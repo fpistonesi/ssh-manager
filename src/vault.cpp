@@ -188,7 +188,10 @@ Vault::~Vault()
 
 bool Vault::exists() const
 {
-    return QFileInfo::exists(m_path);
+    // An empty file counts as missing: creating an empty vault.db next to the
+    // executable is how a new portable vault is started.
+    const QFileInfo info(m_path);
+    return info.exists() && info.size() > 0;
 }
 
 bool Vault::create(const QByteArray &password, const QByteArray &payload, QString *error)

@@ -5,12 +5,14 @@
 
 #include <QAbstractItemView>
 #include <QCheckBox>
+#include <QCollator>
 #include <QComboBox>
 #include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QFontDatabase>
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -28,6 +30,7 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 
+#include <algorithm>
 #include <functional>
 
 ConnectionDialog::ConnectionDialog(const ConnectionStore &store, QWidget *parent)
@@ -72,7 +75,15 @@ ConnectionDialog::ConnectionDialog(const ConnectionStore &store, QWidget *parent
     favorite_ = new QCheckBox(tr("Segna come preferito"), serverGroup);
     tags_ = new QLineEdit(serverGroup);
     tags_->setPlaceholderText(tr("tag separati da virgola, es. produzione, web"));
-    serverForm->addRow(favorite_);
+    jumpHost_ = new QCheckBox(tr("Usa come jump host"), serverGroup);
+    jumpHost_->setToolTip(tr("Proponi questa connessione nell'elenco \"Passa per\" delle altre "
+                             "connessioni."));
+    auto *flagsRow = new QHBoxLayout;
+    flagsRow->addWidget(favorite_);
+    flagsRow->addSpacing(16);
+    flagsRow->addWidget(jumpHost_);
+    flagsRow->addStretch(1);
+    serverForm->addRow(flagsRow);
     serverForm->addRow(tr("Tag"), tags_);
     serverPageLayout->addWidget(serverGroup);
 
@@ -153,19 +164,32 @@ ConnectionDialog::ConnectionDialog(const ConnectionStore &store, QWidget *parent
     terminalLayout->addWidget(terminalButton);
     terminalPageLayout->addWidget(terminalGroup);
 
-    auto *tunnelGroup = new QGroupBox(tr("Tunnel (port forwarding locale)"), this);
+    auto *tunnelGroup = new QGroupBox(tr("Tunnel (port forwarding)"), this);
     auto *tunnelLayout = new QVBoxLayout(tunnelGroup);
-    tunnels_ = new QTableWidget(0, 5, tunnelGroup);
+    tunnels_ = new QTableWidget(0, TunnelColumnCount, tunnelGroup);
     tunnels_->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tunnels_->setHorizontalHeaderLabels({tr("Attivo"), tr("Indirizzo locale"), tr("Porta locale"),
-                                         tr("Host remoto"), tr("Porta remota")});
-    tunnels_->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    tunnels_->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-    tunnels_->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
-    tunnels_->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
-    tunnels_->horizontalHeader()->setSectionResizeMode(4, QHeaderView::ResizeToContents);
+    tunnels_->setHorizontalHeaderLabels({tr("Attivo"), tr("Tipo"), tr("Indirizzo locale"),
+                                         tr("Porta locale"), tr("Host remoto"),
+                                         tr("Porta remota")});
+    QHeaderView *tunnelHeader = tunnels_->horizontalHeader();
+    tunnelHeader->setSectionResizeMode(TunnelEnabledColumn, QHeaderView::ResizeToContents);
+    tunnelHeader->setSectionResizeMode(TunnelTypeColumn, QHeaderView::ResizeToContents);
+    tunnelHeader->setSectionResizeMode(TunnelLocalAddressColumn, QHeaderView::Stretch);
+    tunnelHeader->setSectionResizeMode(TunnelLocalPortColumn, QHeaderView::ResizeToContents);
+    tunnelHeader->setSectionResizeMode(TunnelRemoteHostColumn, QHeaderView::Stretch);
+    tunnelHeader->setSectionResizeMode(TunnelRemotePortColumn, QHeaderView::ResizeToContents);
     tunnels_->verticalHeader()->setVisible(false);
     tunnelLayout->addWidget(tunnels_);
+
+    auto *tunnelHint = new QLabel(
+        tr("<b>Locale (-L)</b>: apre la porta locale e la inoltra a host:porta remoti, "
+           "raggiunti dal server. <b>Remoto (-R)</b>: apre la porta remota sul server "
+           "(host remoto = indirizzo di ascolto, vuoto per il default) e la inoltra a "
+           "indirizzo:porta locali. <b>Dinamico (-D)</b>: proxy SOCKS sulla porta locale."),
+        tunnelGroup);
+    tunnelHint->setWordWrap(true);
+    tunnelHint->setEnabled(false);
+    tunnelLayout->addWidget(tunnelHint);
 
     auto *tunnelButtons = new QHBoxLayout();
     auto *addButton = new QPushButton(tr("Aggiungi tunnel"), tunnelGroup);
@@ -182,6 +206,21 @@ ConnectionDialog::ConnectionDialog(const ConnectionStore &store, QWidget *parent
     notes_ = new QPlainTextEdit(notesGroup);
     notes_->setMaximumHeight(70);
     notesLayout->addWidget(notes_);
+
+    auto *startupGroup = new QGroupBox(tr("Comando all'avvio"), this);
+    auto *startupLayout = new QVBoxLayout(startupGroup);
+    startupCommand_ = new QLineEdit(startupGroup);
+    startupCommand_->setPlaceholderText(tr("es. cd /var/www && git status"));
+    startupCommand_->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
+    startupLayout->addWidget(startupCommand_);
+    auto *startupHint = new QLabel(
+        tr("Eseguito sul server all'apertura della sessione, poi si apre la shell interattiva. "
+           "Puoi usare ${host}, ${user}, ${port} e ${name}."),
+        startupGroup);
+    startupHint->setWordWrap(true);
+    startupHint->setEnabled(false);
+    startupLayout->addWidget(startupHint);
+    terminalPageLayout->addWidget(startupGroup);
     terminalPageLayout->addWidget(notesGroup);
     terminalPageLayout->addStretch(1);
 
@@ -281,7 +320,7 @@ void ConnectionDialog::populateFolders()
 {
     const QString current = folder_->currentData().toString();
     folder_->clear();
-    folder_->addItem(tr("Radice"), store_.root.id);
+    folder_->addItem(tr("Livello principale"), store_.root.id);
 
     std::function<void(const Node &, const QString &)> walk = [&](const Node &node,
                                                                  const QString &prefix) {
@@ -300,17 +339,31 @@ void ConnectionDialog::populateFolders()
         folder_->setCurrentIndex(index);
 }
 
-void ConnectionDialog::populateJumpHosts(const QString &excludeId)
+void ConnectionDialog::populateJumpHosts(const QString &excludeId, const QString &keepId)
 {
-    const QString current = jump_->currentData().toString();
+    const QString current = keepId.isEmpty() ? jump_->currentData().toString() : keepId;
     jump_->clear();
     jump_->addItem(tr("Nessuno (connessione diretta)"), QString());
 
+    // Only connections marked as jump hosts, plus the one already in use so
+    // that editing never drops it, in natural alphabetical order.
     QVector<const Connection *> connections;
     store_.collectConnections(connections);
+    QVector<const Connection *> candidates;
     for (const Connection *candidate : connections) {
         if (!excludeId.isEmpty() && candidate->id == excludeId)
             continue;
+        if (candidate->jumpHost || (!current.isEmpty() && candidate->id == current))
+            candidates.append(candidate);
+    }
+    QCollator collator;
+    collator.setNumericMode(true);
+    collator.setCaseSensitivity(Qt::CaseInsensitive);
+    std::stable_sort(candidates.begin(), candidates.end(),
+                     [&collator](const Connection *a, const Connection *b) {
+                         return collator.compare(a->displayName(), b->displayName()) < 0;
+                     });
+    for (const Connection *candidate : candidates) {
         jump_->addItem(QStringLiteral("%1 (%2)").arg(candidate->displayName(), candidate->target()),
                        candidate->id);
     }
@@ -355,11 +408,78 @@ void ConnectionDialog::addTunnelRow(const TunnelConfig &tunnel)
     auto *active = new QTableWidgetItem();
     active->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
     active->setCheckState(tunnel.enabled ? Qt::Checked : Qt::Unchecked);
-    tunnels_->setItem(row, 0, active);
-    tunnels_->setItem(row, 1, new QTableWidgetItem(tunnel.localAddress));
-    tunnels_->setItem(row, 2, new QTableWidgetItem(QString::number(tunnel.localPort)));
-    tunnels_->setItem(row, 3, new QTableWidgetItem(tunnel.remoteHost));
-    tunnels_->setItem(row, 4, new QTableWidgetItem(QString::number(tunnel.remotePort)));
+    tunnels_->setItem(row, TunnelEnabledColumn, active);
+
+    auto *type = new QComboBox(tunnels_);
+    type->addItem(tr("Locale (-L)"), int(TunnelType::Local));
+    type->addItem(tr("Remoto (-R)"), int(TunnelType::Remote));
+    type->addItem(tr("Dinamico (-D)"), int(TunnelType::Dynamic));
+    type->setCurrentIndex(type->findData(int(tunnel.type)));
+    tunnels_->setCellWidget(row, TunnelTypeColumn, type);
+
+    tunnels_->setItem(row, TunnelLocalAddressColumn, new QTableWidgetItem(tunnel.localAddress));
+    tunnels_->setItem(row, TunnelLocalPortColumn,
+                      new QTableWidgetItem(QString::number(tunnel.localPort)));
+    tunnels_->setItem(row, TunnelRemoteHostColumn, new QTableWidgetItem(tunnel.remoteHost));
+    tunnels_->setItem(row, TunnelRemotePortColumn,
+                      new QTableWidgetItem(QString::number(tunnel.remotePort)));
+
+    // Rows move when others are removed: look the row up from the combo.
+    connect(type, &QComboBox::currentIndexChanged, this, [this, type] {
+        for (int r = 0; r < tunnels_->rowCount(); ++r) {
+            if (tunnels_->cellWidget(r, TunnelTypeColumn) == type) {
+                updateTunnelRow(r);
+                return;
+            }
+        }
+    });
+    updateTunnelRow(row);
+}
+
+TunnelType ConnectionDialog::tunnelType(int row) const
+{
+    if (auto *combo = qobject_cast<QComboBox *>(tunnels_->cellWidget(row, TunnelTypeColumn)))
+        return static_cast<TunnelType>(combo->currentData().toInt());
+    return TunnelType::Local;
+}
+
+void ConnectionDialog::updateTunnelRow(int row)
+{
+    const TunnelType type = tunnelType(row);
+    const bool usesRemote = type != TunnelType::Dynamic;
+    for (int column : {int(TunnelRemoteHostColumn), int(TunnelRemotePortColumn)}) {
+        QTableWidgetItem *item = tunnels_->item(row, column);
+        if (!item)
+            continue;
+        item->setFlags(usesRemote ? (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable)
+                                  : Qt::ItemIsSelectable);
+    }
+
+    QString localTip;
+    QString remoteTip;
+    switch (type) {
+    case TunnelType::Local:
+        localTip = tr("Indirizzo e porta su cui ascoltare su questo computer");
+        remoteTip = tr("Destinazione raggiunta dal server");
+        break;
+    case TunnelType::Remote:
+        localTip = tr("Destinazione raggiunta da questo computer");
+        remoteTip = tr("Indirizzo e porta su cui ascoltare sul server (indirizzo vuoto = default "
+                       "del server)");
+        break;
+    case TunnelType::Dynamic:
+        localTip = tr("Indirizzo e porta del proxy SOCKS su questo computer");
+        remoteTip = tr("Non usato dal proxy SOCKS");
+        break;
+    }
+    for (int column : {int(TunnelLocalAddressColumn), int(TunnelLocalPortColumn)}) {
+        if (QTableWidgetItem *item = tunnels_->item(row, column))
+            item->setToolTip(localTip);
+    }
+    for (int column : {int(TunnelRemoteHostColumn), int(TunnelRemotePortColumn)}) {
+        if (QTableWidgetItem *item = tunnels_->item(row, column))
+            item->setToolTip(remoteTip);
+    }
 }
 
 QVector<TunnelConfig> ConnectionDialog::readTunnels() const
@@ -367,15 +487,16 @@ QVector<TunnelConfig> ConnectionDialog::readTunnels() const
     QVector<TunnelConfig> list;
     for (int row = 0; row < tunnels_->rowCount(); ++row) {
         TunnelConfig tunnel;
-        if (auto *active = tunnels_->item(row, 0))
+        tunnel.type = tunnelType(row);
+        if (auto *active = tunnels_->item(row, TunnelEnabledColumn))
             tunnel.enabled = active->checkState() == Qt::Checked;
-        if (auto *item = tunnels_->item(row, 1))
+        if (auto *item = tunnels_->item(row, TunnelLocalAddressColumn))
             tunnel.localAddress = item->text().trimmed();
-        if (auto *item = tunnels_->item(row, 2))
+        if (auto *item = tunnels_->item(row, TunnelLocalPortColumn))
             tunnel.localPort = static_cast<quint16>(item->text().toUInt());
-        if (auto *item = tunnels_->item(row, 3))
+        if (auto *item = tunnels_->item(row, TunnelRemoteHostColumn))
             tunnel.remoteHost = item->text().trimmed();
-        if (auto *item = tunnels_->item(row, 4))
+        if (auto *item = tunnels_->item(row, TunnelRemotePortColumn))
             tunnel.remotePort = static_cast<quint16>(item->text().toUInt());
         list.append(tunnel);
     }
@@ -397,6 +518,7 @@ void ConnectionDialog::setConnection(const Connection &connection)
     keyName_ = connection.keyName;
     updateKeyStatus();
     notes_->setPlainText(connection.notes);
+    startupCommand_->setText(connection.startupCommand);
     favorite_->setChecked(connection.favorite);
     tags_->setText(connection.tags.join(QStringLiteral(", ")));
     terminal_ = connection.terminal;
@@ -410,7 +532,8 @@ void ConnectionDialog::setConnection(const Connection &connection)
     for (const TunnelConfig &tunnel : connection.tunnels)
         addTunnelRow(tunnel);
 
-    populateJumpHosts(connection.id);
+    jumpHost_->setChecked(connection.jumpHost);
+    populateJumpHosts(connection.id, connection.jumpId);
     const int jumpIndex = jump_->findData(connection.jumpId);
     if (jumpIndex >= 0)
         jump_->setCurrentIndex(jumpIndex);
@@ -446,7 +569,9 @@ Connection ConnectionDialog::connection() const
     connection.keyName = keyName_;
     connection.jumpId = jump_->currentData().toString();
     connection.notes = notes_->toPlainText();
+    connection.startupCommand = startupCommand_->text().trimmed();
     connection.favorite = favorite_->isChecked();
+    connection.jumpHost = jumpHost_->isChecked();
     for (const QString &tag : tags_->text().split(QLatin1Char(','), Qt::SkipEmptyParts)) {
         const QString trimmed = tag.trimmed();
         if (!trimmed.isEmpty() && !connection.tags.contains(trimmed, Qt::CaseInsensitive))
@@ -485,21 +610,40 @@ void ConnectionDialog::accept()
         return;
     }
 
+    const auto cellText = [this](int row, int column) {
+        QTableWidgetItem *item = tunnels_->item(row, column);
+        return item ? item->text().trimmed() : QString();
+    };
+    const auto validPort = [](const QString &text) {
+        bool ok = false;
+        const uint value = text.toUInt(&ok);
+        return ok && value > 0 && value <= 65535;
+    };
     for (int row = 0; row < tunnels_->rowCount(); ++row) {
-        auto *active = tunnels_->item(row, 0);
+        auto *active = tunnels_->item(row, TunnelEnabledColumn);
         if (active && active->checkState() != Qt::Checked)
             continue;
 
-        bool localOk = false;
-        bool remoteOk = false;
-        const uint localPort = tunnels_->item(row, 2) ? tunnels_->item(row, 2)->text().toUInt(&localOk) : 0;
-        const uint remotePort = tunnels_->item(row, 4) ? tunnels_->item(row, 4)->text().toUInt(&remoteOk) : 0;
-        const QString remoteHost = tunnels_->item(row, 3) ? tunnels_->item(row, 3)->text().trimmed() : QString();
-
-        if (!localOk || !remoteOk || localPort == 0 || remotePort == 0 || remoteHost.isEmpty()) {
+        const bool localPortOk = validPort(cellText(row, TunnelLocalPortColumn));
+        const bool remotePortOk = validPort(cellText(row, TunnelRemotePortColumn));
+        QString problem;
+        switch (tunnelType(row)) {
+        case TunnelType::Local:
+            if (!localPortOk || !remotePortOk || cellText(row, TunnelRemoteHostColumn).isEmpty())
+                problem = tr("porte e host remoto sono obbligatori");
+            break;
+        case TunnelType::Remote:
+            if (!localPortOk || !remotePortOk)
+                problem = tr("porta locale e porta remota sono obbligatorie");
+            break;
+        case TunnelType::Dynamic:
+            if (!localPortOk)
+                problem = tr("la porta locale è obbligatoria");
+            break;
+        }
+        if (!problem.isEmpty()) {
             QMessageBox::warning(this, tr("Tunnel non valido"),
-                                 tr("Controlla la riga %1 dei tunnel: porte e host remoto sono "
-                                    "obbligatori.").arg(row + 1));
+                                 tr("Controlla la riga %1 dei tunnel: %2.").arg(row + 1).arg(problem));
             return;
         }
     }

@@ -1,12 +1,17 @@
 #include "paths.h"
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QStandardPaths>
 
 namespace paths {
 
-QString configDir()
+namespace {
+
+// ~/.config/sshmanager (Linux), %LOCALAPPDATA%\sshmanager (Windows).
+QString localConfigDir()
 {
     static QString cached;
     if (!cached.isEmpty())
@@ -21,6 +26,30 @@ QString configDir()
     QFile::setPermissions(cached,
                           QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner);
     return cached;
+}
+
+} // namespace
+
+QString portableDir()
+{
+    static const QString cached = [] {
+        if (!QCoreApplication::instance())
+            return QString();
+        const QString dir = QCoreApplication::applicationDirPath();
+        return QFileInfo(dir + QStringLiteral("/vault.db")).isFile() ? dir : QString();
+    }();
+    return cached;
+}
+
+bool isPortable()
+{
+    return !portableDir().isEmpty();
+}
+
+QString configDir()
+{
+    // The executable's folder keeps its own permissions.
+    return isPortable() ? portableDir() : localConfigDir();
 }
 
 QString knownHostsFile()
@@ -49,7 +78,7 @@ QString runtimeDir()
     if (!cached.isEmpty())
         return cached;
 
-    cached = configDir() + QStringLiteral("/run");
+    cached = localConfigDir() + QStringLiteral("/run");
     QDir().mkpath(cached);
     QFile::setPermissions(cached,
                           QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner);

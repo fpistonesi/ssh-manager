@@ -31,13 +31,25 @@ protected:
     void accept() override;
 
 private:
+    enum TunnelColumn {
+        TunnelEnabledColumn,
+        TunnelTypeColumn,
+        TunnelLocalAddressColumn,
+        TunnelLocalPortColumn,
+        TunnelRemoteHostColumn,
+        TunnelRemotePortColumn,
+        TunnelColumnCount
+    };
+
     void populateFolders();
-    void populateJumpHosts(const QString &excludeId);
+    void populateJumpHosts(const QString &excludeId, const QString &keepId = QString());
     void updateAuthRows();
     void updateKeyStatus();
     void updateTerminalSummary();
     void addTunnelRow(const TunnelConfig &tunnel);
     QVector<TunnelConfig> readTunnels() const;
+    TunnelType tunnelType(int row) const;
+    void updateTunnelRow(int row);
 
     const ConnectionStore &store_;
     QString connectionId_;
@@ -45,6 +57,7 @@ private:
     QLineEdit *name_ = nullptr;
     QComboBox *folder_ = nullptr;
     QCheckBox *favorite_ = nullptr;
+    QCheckBox *jumpHost_ = nullptr;
     QLineEdit *tags_ = nullptr;
     QLineEdit *host_ = nullptr;
     QSpinBox *port_ = nullptr;
@@ -71,4 +84,5 @@ private:
     QComboBox *jump_ = nullptr;
     QTableWidget *tunnels_ = nullptr;
     QPlainTextEdit *notes_ = nullptr;
+    QLineEdit *startupCommand_ = nullptr;
 };

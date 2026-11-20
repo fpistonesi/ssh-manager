@@ -33,6 +33,15 @@ struct SftpPlan {
 // jump host of that jump host, and so on.
 SshPlan buildSshPlan(const Connection &connection, const QVector<Connection> &jumpChain,
                      const QString &runtimeDir);
+// Background tunnels only: "ssh -N" with ExitOnForwardFailure, no terminal.
+// Fails when the connection has no enabled tunnel.
+SshPlan buildTunnelPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                        const QString &runtimeDir);
+// Non-interactive command execution ("ssh -T host <command>"): no terminal,
+// no tunnels, no startup command. The remote command is appended by the
+// caller (see RemoteRun).
+SshPlan buildCommandPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                         const QString &runtimeDir);
 SftpPlan buildSftpPlan(const Connection &connection, const QVector<Connection> &jumpChain,
                        const QString &runtimeDir);
 

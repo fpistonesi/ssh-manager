@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSet>
 #include <QStringList>
 #include <QUuid>
 
@@ -26,6 +27,11 @@ QByteArray decodeBytes(const QString &text)
 QJsonObject tunnelToJson(const TunnelConfig &t)
 {
     QJsonObject o;
+    // Absent in archives written before -R/-D support: those are all local.
+    if (t.type == TunnelType::Remote)
+        o[QStringLiteral("type")] = QStringLiteral("remote");
+    else if (t.type == TunnelType::Dynamic)
+        o[QStringLiteral("type")] = QStringLiteral("dynamic");
     o[QStringLiteral("localAddress")] = t.localAddress;
     o[QStringLiteral("localPort")] = t.localPort;
     o[QStringLiteral("remoteHost")] = t.remoteHost;
@@ -37,7 +43,12 @@ QJsonObject tunnelToJson(const TunnelConfig &t)
 TunnelConfig tunnelFromJson(const QJsonObject &o)
 {
     TunnelConfig t;
-    t.localAddress = o.value(QStringLiteral("localAddress")).toString(QStringLiteral("127.0.0.1"));
+    const QString type = o.value(QStringLiteral("type")).toString();
+    if (type == QLatin1String("remote"))
+        t.type = TunnelType::Remote;
+    else if (type == QLatin1String("dynamic"))
+        t.type = TunnelType::Dynamic;
+    t.localAddress =o.value(QStringLiteral("localAddress")).toString(QStringLiteral("127.0.0.1"));
     t.localPort = static_cast<quint16>(o.value(QStringLiteral("localPort")).toInt(8080));
     t.remoteHost = o.value(QStringLiteral("remoteHost")).toString(QStringLiteral("127.0.0.1"));
     t.remotePort = static_cast<quint16>(o.value(QStringLiteral("remotePort")).toInt(80));
@@ -88,7 +99,12 @@ QJsonObject connectionToJson(const Connection &c)
     o[QStringLiteral("keyName")] = c.keyName;
     o[QStringLiteral("jumpId")] = c.jumpId;
     o[QStringLiteral("notes")] = c.notes;
+    if (!c.startupCommand.isEmpty())
+        o[QStringLiteral("startupCommand")] = c.startupCommand;
+    if (!c.remoteBookmarks.isEmpty())
+        o[QStringLiteral("remoteBookmarks")] = QJsonArray::fromStringList(c.remoteBookmarks);
     o[QStringLiteral("favorite")] = c.favorite;
+    o[QStringLiteral("jumpHost")] = c.jumpHost;
     QJsonArray tags;
     for (const QString &tag : c.tags)
         tags.append(tag);
@@ -120,7 +136,11 @@ Connection connectionFromJson(const QJsonObject &o, bool legacy)
     c.keyName = o.value(QStringLiteral("keyName")).toString();
     c.jumpId = o.value(QStringLiteral("jumpId")).toString();
     c.notes = o.value(QStringLiteral("notes")).toString();
+    c.startupCommand = o.value(QStringLiteral("startupCommand")).toString();
+    for (const QJsonValue &bookmark : o.value(QStringLiteral("remoteBookmarks")).toArray())
+        c.remoteBookmarks << bookmark.toString();
     c.favorite = o.value(QStringLiteral("favorite")).toBool(false);
+    c.jumpHost = o.value(QStringLiteral("jumpHost")).toBool(false);
     for (const QJsonValue &tag : o.value(QStringLiteral("tags")).toArray()) {
         const QString value = tag.toString().trimmed();
         if (!value.isEmpty())
@@ -240,6 +260,8 @@ ConnectionStore::ConnectionStore()
 void ConnectionStore::reset()
 {
     clearSensitive();
+    snippets.clear();
+    history.clear();
     root = Node{};
     root.kind = Node::Kind::Folder;
     root.id = QStringLiteral("root");
@@ -255,9 +277,49 @@ QString ConnectionStore::newId()
 QJsonObject ConnectionStore::toJson() const
 {
     QJsonObject document;
-    document[QStringLiteral("version")] = 2;
+    // 3: per-connection jumpHost flag.
+    document[QStringLiteral("version")] = 3;
     document[QStringLiteral("root")] = nodeToJson(root);
+
+    QJsonArray snippetArray;
+    for (const Snippet &snippet : snippets) {
+        QJsonObject o;
+        o[QStringLiteral("id")] = snippet.id;
+        o[QStringLiteral("name")] = snippet.name;
+        o[QStringLiteral("command")] = snippet.command;
+        o[QStringLiteral("description")] = snippet.description;
+        o[QStringLiteral("runImmediately")] = snippet.runImmediately;
+        snippetArray.append(o);
+    }
+    document[QStringLiteral("snippets")] = snippetArray;
+
+    QJsonObject historyObject;
+    for (auto it = history.begin(); it != history.end(); ++it) {
+        if (!it.value().isEmpty())
+            historyObject[it.key()] = QJsonArray::fromStringList(it.value());
+    }
+    document[QStringLiteral("history")] = historyObject;
     return document;
+}
+
+void ConnectionStore::addHistory(const QString &connectionId, const QString &command)
+{
+    if (connectionId.isEmpty() || command.isEmpty())
+        return;
+    QStringList &list = history[connectionId];
+    list.removeAll(command);
+    list.prepend(command);
+    while (list.size() > kHistoryLimit)
+        list.removeLast();
+}
+
+Snippet *ConnectionStore::findSnippet(const QString &id)
+{
+    for (Snippet &snippet : snippets) {
+        if (snippet.id == id)
+            return &snippet;
+    }
+    return nullptr;
 }
 
 bool ConnectionStore::fromJson(const QJsonObject &document, QString *error)
@@ -279,6 +341,32 @@ bool ConnectionStore::fromJson(const QJsonObject &document, QString *error)
     if (loaded.id.isEmpty())
         loaded.id = QStringLiteral("root");
     root = loaded;
+    if (document.value(QStringLiteral("version")).toInt() < 3)
+        markReferencedJumpHosts();
+
+    // Archives written before snippets and history simply lack these keys.
+    for (const QJsonValue &value : document.value(QStringLiteral("snippets")).toArray()) {
+        const QJsonObject o = value.toObject();
+        Snippet snippet;
+        snippet.id = o.value(QStringLiteral("id")).toString();
+        if (snippet.id.isEmpty())
+            snippet.id = newId();
+        snippet.name = o.value(QStringLiteral("name")).toString();
+        snippet.command = o.value(QStringLiteral("command")).toString();
+        snippet.description = o.value(QStringLiteral("description")).toString();
+        snippet.runImmediately = o.value(QStringLiteral("runImmediately")).toBool(true);
+        if (!snippet.command.isEmpty())
+            snippets.append(snippet);
+    }
+    const QJsonObject historyObject = document.value(QStringLiteral("history")).toObject();
+    for (auto it = historyObject.begin(); it != historyObject.end(); ++it) {
+        QStringList commands;
+        for (const QJsonValue &command : it.value().toArray())
+            commands << command.toString();
+        commands.removeAll(QString());
+        if (!commands.isEmpty())
+            history.insert(it.key(), commands.mid(0, kHistoryLimit));
+    }
     return true;
 }
 
@@ -316,7 +404,23 @@ bool ConnectionStore::loadLegacyFile(const QString &path, QString *error)
     if (loaded.id.isEmpty())
         loaded.id = QStringLiteral("root");
     root = loaded;
+    markReferencedJumpHosts();
     return true;
+}
+
+void ConnectionStore::markReferencedJumpHosts()
+{
+    QVector<const Connection *> connections;
+    collectConnections(connections);
+    QSet<QString> referenced;
+    for (const Connection *connection : connections) {
+        if (!connection->jumpId.isEmpty())
+            referenced.insert(connection->jumpId);
+    }
+    for (const QString &id : referenced) {
+        if (Connection *jump = findConnection(id))
+            jump->jumpHost = true;
+    }
 }
 
 void ConnectionStore::clearSensitive()

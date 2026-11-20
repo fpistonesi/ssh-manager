@@ -1,6 +1,250 @@
 <?xml version='1.0' encoding='utf-8'?>
 <TS version="2.1" language="en_US">
     <context>
+        <name>BatchDialog</name>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Esecuzione su più host</source>
+            <translation>Run on several hosts</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Host</source>
+            <translation>Hosts</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Connessione</source>
+            <translation>Connection</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Destinazione</source>
+            <translation>Target</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Tutti</source>
+            <translation>All</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Nessuno</source>
+            <translation>None</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Comando</source>
+            <translation>Command</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Inserisci uno snippet…</source>
+            <translation>Insert a snippet…</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>es. uptime &amp;&amp; df -h /</source>
+            <translation>e.g. uptime &amp;&amp; df -h /</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Eseguito dalla shell dell'utente su ogni host, senza terminale. ${host}, ${user}, ${port} e ${name} valgono per ciascun host; le altre ${variabili} vengono chieste una volta.</source>
+            <translation>Run by the user's shell on every host, without a terminal. ${host}, ${user}, ${port} and ${name} are per host; other ${variables} are asked once.</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>In parallelo:</source>
+            <translation>In parallel:</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Timeout:</source>
+            <translation>Timeout:</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source> s</source>
+            <translation> s</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Esegui</source>
+            <translation>Run</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Interrompi</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Risultati</source>
+            <translation>Results</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Stato</source>
+            <translation>State</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Codice</source>
+            <translation>Code</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Durata</source>
+            <translation>Duration</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Seleziona un host per vederne l'output.</source>
+            <translation>Select a host to see its output.</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Riesegui sui non riusciti</source>
+            <translation>Run again on failed</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Copia output</source>
+            <translation>Copy output</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Salva risultati…</source>
+            <translation>Save results…</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Chiudi</source>
+            <translation>Close</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Scrivi il comando da eseguire.</source>
+            <translation>Write the command to run.</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Seleziona almeno un host.</source>
+            <translation>Select at least one host.</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Eseguire il comando su %1 host?</source>
+            <translation>Run the command on %1 hosts?</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>In attesa</source>
+            <translation>Waiting</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>In corso</source>
+            <translation>Running</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Non avviato</source>
+            <translation>Not started</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Interrotto</source>
+            <translation>Stopped</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Timeout</source>
+            <translation>Timeout</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Errore di connessione</source>
+            <translation>Connection error</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Uscito con errore</source>
+            <translation>Exited with error</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Completato</source>
+            <translation>Completed</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>In esecuzione…</source>
+            <translation>Running…</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>In attesa…</source>
+            <translation>Waiting…</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>--- stderr ---
+</source>
+            <translation>--- stderr ---
+</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>
+[output troncato a 1 MB]</source>
+            <translation>
+[output truncated at 1 MB]</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>
+[interrotto dopo il timeout]</source>
+            <translation>
+[stopped after the timeout]</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>(nessun output)</source>
+            <translation>(no output)</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Scegli gli host, scrivi il comando e premi Esegui.</source>
+            <translation>Choose the hosts, write the command and press Run.</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Completati: %1 · non riusciti: %2 · in corso: %3 · in attesa: %4</source>
+            <translation>Completed: %1 · failed: %2 · running: %3 · waiting: %4</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Salva risultati</source>
+            <translation>Save results</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Testo (*.txt);;JSON (*.json)</source>
+            <translation>Text (*.txt);;JSON (*.json)</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>codice %1</source>
+            <translation>code %1</translation>
+        </message>
+        <message>
+            <location filename="../src/batchdialog.cpp" line="0" />
+            <source>Ci sono comandi ancora in esecuzione. Interromperli e chiudere?</source>
+            <translation>Commands are still running. Stop them and close?</translation>
+        </message>
+    </context>
+    <context>
         <name>CommandPalette</name>
         <message>
             <location filename="../src/commandpalette.cpp" line="94" />
@@ -334,6 +578,324 @@
             <source>Controlla la riga %1 dei tunnel: porte e host remoto sono obbligatori.</source>
             <translation>Check tunnel row %1: ports and remote host are required.</translation>
         </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Tunnel (port forwarding)</source>
+            <translation>Tunnels (port forwarding)</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Tipo</source>
+            <translation>Type</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>&lt;b&gt;Locale (-L)&lt;/b&gt;: apre la porta locale e la inoltra a host:porta remoti, raggiunti dal server. &lt;b&gt;Remoto (-R)&lt;/b&gt;: apre la porta remota sul server (host remoto = indirizzo di ascolto, vuoto per il default) e la inoltra a indirizzo:porta locali. &lt;b&gt;Dinamico (-D)&lt;/b&gt;: proxy SOCKS sulla porta locale.</source>
+            <translation>&lt;b&gt;Local (-L)&lt;/b&gt;: opens the local port and forwards it to the remote host:port, reached from the server. &lt;b&gt;Remote (-R)&lt;/b&gt;: opens the remote port on the server (remote host = listen address, empty for the default) and forwards it to the local address:port. &lt;b&gt;Dynamic (-D)&lt;/b&gt;: SOCKS proxy on the local port.</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Locale (-L)</source>
+            <translation>Local (-L)</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Remoto (-R)</source>
+            <translation>Remote (-R)</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Dinamico (-D)</source>
+            <translation>Dynamic (-D)</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Indirizzo e porta su cui ascoltare su questo computer</source>
+            <translation>Address and port to listen on, on this computer</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Destinazione raggiunta dal server</source>
+            <translation>Destination reached from the server</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Destinazione raggiunta da questo computer</source>
+            <translation>Destination reached from this computer</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Indirizzo e porta su cui ascoltare sul server (indirizzo vuoto = default del server)</source>
+            <translation>Address and port to listen on, on the server (empty address = server default)</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Indirizzo e porta del proxy SOCKS su questo computer</source>
+            <translation>Address and port of the SOCKS proxy on this computer</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Non usato dal proxy SOCKS</source>
+            <translation>Not used by the SOCKS proxy</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>porte e host remoto sono obbligatori</source>
+            <translation>ports and remote host are required</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>porta locale e porta remota sono obbligatorie</source>
+            <translation>local and remote port are required</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>la porta locale è obbligatoria</source>
+            <translation>the local port is required</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Controlla la riga %1 dei tunnel: %2.</source>
+            <translation>Check tunnel row %1: %2.</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Comando all'avvio</source>
+            <translation>Startup command</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>es. cd /var/www &amp;&amp; git status</source>
+            <translation>e.g. cd /var/www &amp;&amp; git status</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Eseguito sul server all'apertura della sessione, poi si apre la shell interattiva. Puoi usare ${host}, ${user}, ${port} e ${name}.</source>
+            <translation>Run on the server when the session opens, then the interactive shell starts. You can use ${host}, ${user}, ${port} and ${name}.</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Livello principale</source>
+            <translation>Top level</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Usa come jump host</source>
+            <translation>Use as jump host</translation>
+        </message>
+        <message>
+            <location filename="../src/connectiondialog.cpp" line="0" />
+            <source>Proponi questa connessione nell'elenco &quot;Passa per&quot; delle altre connessioni.</source>
+            <translation>Offer this connection in the &quot;Connect via&quot; list of the other connections.</translation>
+        </message>
+    </context>
+    <context>
+        <name>ConnectionPicker</name>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Nome</source>
+            <translation>Name</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Destinazione</source>
+            <translation>Destination</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Seleziona tutto</source>
+            <translation>Select all</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Deseleziona tutto</source>
+            <translation>Select none</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportSelectionDialog</name>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Esporta connessioni</source>
+            <translation>Export connections</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Scegli le connessioni da mettere nel file, ad esempio da passare a un collega. Il file è cifrato con una password che indicherai dopo.</source>
+            <translation>Choose the connections to put in the file, for example to hand to a colleague. The file is encrypted with a password you will enter next.</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Includi le credenziali (password, passphrase e chiavi incorporate)</source>
+            <translation>Include credentials (passwords, passphrases and embedded keys)</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Senza credenziali chi importa userà le proprie: la password viene chiesta alla connessione.</source>
+            <translation>Without credentials, whoever imports will use their own: the password is asked when connecting.</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Includi gli snippet (%n)</source>
+            <translation>
+                <numerusform>Include the snippet (%n)</numerusform>
+                <numerusform>Include the snippets (%n)</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Esporta…</source>
+            <translation>Export…</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>%n connessione/i selezionata/e</source>
+            <translation>
+                <numerusform>%n connection selected</numerusform>
+                <numerusform>%n connections selected</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>, più %n jump host necessario/i</source>
+            <translation>
+                <numerusform>, plus %n required jump host</numerusform>
+                <numerusform>, plus %n required jump hosts</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Le credenziali sono incluse: proteggi il file con una password robusta.</source>
+            <translation>Credentials are included: protect the file with a strong password.</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Senza credenziali.</source>
+            <translation>Without credentials.</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Seleziona almeno una connessione.</source>
+            <translation>Select at least one connection.</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExternalToolsDialog</name>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Test porta</source>
+            <translation>Port test</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Strumenti esterni</source>
+            <translation>External tools</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Aggiungi</source>
+            <translation>Add</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Rimuovi</source>
+            <translation>Remove</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Su</source>
+            <translation>Up</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Giù</source>
+            <translation>Down</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>es. Ping</source>
+            <translation>e.g. Ping</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Nome</source>
+            <translation>Name</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>es. ping -t ${host}</source>
+            <translation>e.g. ping -t ${host}</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Sfoglia…</source>
+            <translation>Browse…</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Scegli il programma da avviare</source>
+            <translation>Choose the program to start</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Comando</source>
+            <translation>Command</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Scheda terminale integrata</source>
+            <translation>Built-in terminal tab</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Programma esterno (finestra propria)</source>
+            <translation>External program (own window)</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Apri indirizzo (URL)</source>
+            <translation>Open address (URL)</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Esecuzione</source>
+            <translation>Run as</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Variabili: ${host}, ${port}, ${user} e ${name} vengono dalla connessione; ogni altra ${variabile} viene chiesta all'avvio. Gli argomenti con spazi vanno tra virgolette. Gli strumenti sono salvati nelle impostazioni dell'applicazione, non nell'archivio: non inserire password.</source>
+            <translation>Variables: ${host}, ${port}, ${user} and ${name} come from the connection; any other ${variable} is asked at launch. Quote arguments that contain spaces. Tools are saved in the application settings, not in the archive: do not put passwords here.</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Aggiungi strumenti predefiniti</source>
+            <translation>Add default tools</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Aggiunge in fondo all'elenco gli strumenti di esempio mancanti</source>
+            <translation>Appends the missing example tools to the list</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Nuovo strumento</source>
+            <translation>New tool</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Programmi (*.exe *.bat *.cmd);;Tutti i file (*)</source>
+            <translation>Programs (*.exe *.bat *.cmd);;All files (*)</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Scegli il programma</source>
+            <translation>Choose the program</translation>
+        </message>
+        <message>
+            <location filename="../src/externaltools.cpp" line="0" />
+            <source>Indica il comando dello strumento.</source>
+            <translation>Enter the tool's command.</translation>
+        </message>
     </context>
     <context>
         <name>FileTransferDialog</name>
@@ -565,6 +1127,890 @@
             <location filename="../src/filetransferdialog.cpp" line="584" />
             <source>Annullamento in corso…</source>
             <translation>Cancelling…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Lettura</source>
+            <translation>Read</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Scrittura</source>
+            <translation>Write</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Esecuzione</source>
+            <translation>Execute</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Proprietario</source>
+            <translation>Owner</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Gruppo</source>
+            <translation>Group</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Altri</source>
+            <translation>Others</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Valore ottale:</source>
+            <translation>Octal value:</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Segnalibri locali</source>
+            <translation>Local bookmarks</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Aggiorna (F5)</source>
+            <translation>Refresh (F5)</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Segnalibri remoti</source>
+            <translation>Remote bookmarks</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Accoda l'invio degli elementi locali selezionati</source>
+            <translation>Queue the upload of the selected local items</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Accoda la ricezione degli elementi remoti selezionati</source>
+            <translation>Queue the download of the selected remote items</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>oppure
+trascina</source>
+            <translation>or
+drag</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Avanzamento</source>
+            <translation>Progress</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%p% · %1</source>
+            <translation>%p% · %1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>In coda</source>
+            <translation>Queued</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>In corso — %1</source>
+            <translation>Running — %1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nessun trasferimento. Trascina file tra i pannelli o usa Invia/Ricevi.</source>
+            <translation>No transfers. Drag files between the panes or use Upload/Download.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>In corso: %1 · in coda: %2 · completati: %3 · errori: %4</source>
+            <translation>Running: %1 · queued: %2 · completed: %3 · errors: %4</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Ricevi in %1</source>
+            <translation>Download to %1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Modifica con editor locale</source>
+            <translation>Edit with local editor</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nuova cartella…</source>
+            <translation>New folder…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Rinomina…</source>
+            <translation>Rename…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Permessi…</source>
+            <translation>Permissions…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Elimina</source>
+            <translation>Delete</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Copia percorso</source>
+            <translation>Copy path</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Aggiorna</source>
+            <translation>Refresh</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nuova cartella remota</source>
+            <translation>New remote folder</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nome della cartella in %1:</source>
+            <translation>Name of the folder in %1:</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Il nome non può contenere &quot;/&quot;.</source>
+            <translation>The name cannot contain &quot;/&quot;.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Rinomina</source>
+            <translation>Rename</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nuovo nome:</source>
+            <translation>New name:</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%1 elementi</source>
+            <translation>%1 items</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Elimina dal server</source>
+            <translation>Delete from the server</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Eliminare definitivamente %1 dal server? Le cartelle vengono eliminate con tutto il contenuto.</source>
+            <translation>Permanently delete %1 from the server? Folders are deleted with all their content.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Eliminazione in corso…</source>
+            <translation>Deleting…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%1 elementi selezionati</source>
+            <translation>%1 selected items</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Operazione non riuscita</source>
+            <translation>Operation failed</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Invia in %1</source>
+            <translation>Upload to %1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Apri</source>
+            <translation>Open</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Sposta nel cestino</source>
+            <translation>Move to trash</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nuova cartella locale</source>
+            <translation>New local folder</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Impossibile creare la cartella %1.</source>
+            <translation>Cannot create the folder %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Impossibile rinominare %1.</source>
+            <translation>Cannot rename %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Spostare %1 nel cestino?</source>
+            <translation>Move %1 to the trash?</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Impossibile spostare nel cestino:
+%1</source>
+            <translation>Cannot move to the trash:
+%1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Modifica file</source>
+            <translation>Edit file</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%1 è grande %2. Scaricarlo per modificarlo?</source>
+            <translation>%1 is %2. Download it to edit it?</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Download di %1 per la modifica…</source>
+            <translation>Downloading %1 for editing…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Impossibile scaricare %1:
+%2</source>
+            <translation>Cannot download %1:
+%2</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nessun programma associato a %1. Il file è in %2.</source>
+            <translation>No program is associated with %1. The file is in %2.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Modifica di %1: ogni salvataggio viene inviato al server</source>
+            <translation>Editing %1: every save is sent to the server</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Invio di %1 al server…</source>
+            <translation>Sending %1 to the server…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%1 salvato sul server alle %2</source>
+            <translation>%1 saved on the server at %2</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Impossibile salvare %1 sul server:
+%2</source>
+            <translation>Cannot save %1 on the server:
+%2</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Rimuovi %1 dai segnalibri</source>
+            <translation>Remove %1 from bookmarks</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Aggiungi %1 ai segnalibri</source>
+            <translation>Add %1 to bookmarks</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Nessun segnalibro</source>
+            <translation>No bookmarks</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Ci sono trasferimenti in corso o in coda. Interromperli e chiudere?</source>
+            <translation>Transfers are running or queued. Stop them and close?</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Contemporanei:</source>
+            <translation>Parallel:</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Trasferimenti eseguiti in parallelo, ognuno con la propria connessione</source>
+            <translation>Transfers run in parallel, each on its own connection</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Riprova non riusciti</source>
+            <translation>Retry failed</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Rimuovi completati</source>
+            <translation>Remove completed</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Annulla</source>
+            <translation>Cancel</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Riprova</source>
+            <translation>Retry</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Rimuovi dalla lista</source>
+            <translation>Remove from the list</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Cartella locale non trovata: %1</source>
+            <translation>Local folder not found: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Connessione persa, nuovo tentativo %1 di %2…</source>
+            <translation>Connection lost, retry %1 of %2…</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Trasferimento annullato.</source>
+            <translation>Transfer cancelled.</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>%1
+→ %2</source>
+            <translation>%1
+→ %2</translation>
+        </message>
+        <message>
+            <location filename="../src/filetransferdialog.cpp" line="0" />
+            <source>Errore: %1</source>
+            <translation>Error: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>HostHealthDialog</name>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Stato di %1</source>
+            <translation>Status of %1</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Aggiorna ogni 30 s</source>
+            <translation>Refresh every 30 s</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Aggiorna</source>
+            <translation>Refresh</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Sistema</source>
+            <translation>System</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Uptime</source>
+            <translation>Uptime</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Carico</source>
+            <translation>Load</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Memoria</source>
+            <translation>Memory</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Swap</source>
+            <translation>Swap</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Dischi</source>
+            <translation>Disks</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Punto di montaggio</source>
+            <translation>Mount point</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Uso</source>
+            <translation>Use</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Usato</source>
+            <translation>Used</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Totale</source>
+            <translation>Total</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Dispositivo</source>
+            <translation>Device</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Servizi systemd non riusciti</source>
+            <translation>Failed systemd services</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Unità</source>
+            <translation>Unit</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Processi più attivi</source>
+            <translation>Busiest processes</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>PID</source>
+            <translation>PID</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Utente</source>
+            <translation>User</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>CPU %</source>
+            <translation>CPU %</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Mem %</source>
+            <translation>Mem %</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Comando</source>
+            <translation>Command</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Lettura in corso…</source>
+            <translation>Reading…</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Nessuna risposta entro 30 s</source>
+            <translation>No answer within 30 s</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Il server non ha restituito i dati (codice %1)</source>
+            <translation>The server returned no data (code %1)</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Aggiornato alle %1 (%2 ms)</source>
+            <translation>Updated at %1 (%2 ms)</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>kernel %1</source>
+            <translation>kernel %1</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>CPU: %1</source>
+            <translation>CPUs: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>%1 giorni, %2 h %3 min</source>
+            <translation>%1 days, %2 h %3 min</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>%1 h %2 min</source>
+            <translation>%1 h %2 min</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>%1 · %2 · %3 (1, 5, 15 min)</source>
+            <translation>%1 · %2 · %3 (1, 5, 15 min)</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>%1 usati di %2</source>
+            <translation>%1 used of %2</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>nessuno swap</source>
+            <translation>no swap</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>systemd non presente su questo host</source>
+            <translation>systemd not present on this host</translation>
+        </message>
+        <message>
+            <location filename="../src/hosthealth.cpp" line="0" />
+            <source>Nessun servizio in errore</source>
+            <translation>No failed services</translation>
+        </message>
+    </context>
+    <context>
+        <name>HostProbe</name>
+        <message>
+            <location filename="../src/hostprobe.cpp" line="0" />
+            <source>Nessuna risposta (timeout)</source>
+            <translation>No answer (timeout)</translation>
+        </message>
+    </context>
+    <context>
+        <name>ImportSelectionDialog</name>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Importa connessioni</source>
+            <translation>Import connections</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>(livello principale)</source>
+            <translation>(top level)</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Aggiungi in</source>
+            <translation>Add to</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Aggiornale (mantiene le credenziali se il file non le ha)</source>
+            <translation>Update them (keeps the credentials if the file has none)</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Saltale</source>
+            <translation>Skip them</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Aggiungile come copie</source>
+            <translation>Add them as copies</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Connessioni già presenti</source>
+            <translation>Existing connections</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Importa gli snippet (%n)</source>
+            <translation>
+                <numerusform>Import the snippet (%n)</numerusform>
+                <numerusform>Import the snippets (%n)</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Sostituisci l'intero archivio con il file (ripristino)</source>
+            <translation>Replace the whole archive with the file (restore)</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Tutte le connessioni e gli snippet attuali vengono sostituiti da quelli del file</source>
+            <translation>All current connections and snippets are replaced by those in the file</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Importa</source>
+            <translation>Import</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>L'archivio attuale verrà sostituito con le %n connessione/i del file. Le sessioni già aperte restano attive.</source>
+            <translation>
+                <numerusform>The current archive will be replaced with the %n connection in the file. Sessions already open stay active.</numerusform>
+                <numerusform>The current archive will be replaced with the %n connections in the file. Sessions already open stay active.</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>%n connessione/i selezionata/e</source>
+            <translation>
+                <numerusform>%n connection selected</numerusform>
+                <numerusform>%n connections selected</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>, più %n jump host necessario/i</source>
+            <translation>
+                <numerusform>, plus %n required jump host</numerusform>
+                <numerusform>, plus %n required jump hosts</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>; %n già presente/i</source>
+            <translation>
+                <numerusform>; %n already present</numerusform>
+                <numerusform>; %n already present</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Seleziona almeno una connessione.</source>
+            <translation>Select at least one connection.</translation>
+        </message>
+        <message>
+            <location filename="../src/archivetransfer.cpp" line="0" />
+            <source>Sostituire davvero l'intero archivio con il contenuto del file?</source>
+            <translation>Really replace the whole archive with the content of the file?</translation>
+        </message>
+    </context>
+    <context>
+        <name>KeyGenDialog</name>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Genera chiave SSH</source>
+            <translation>Generate SSH key</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Ed25519 (consigliata)</source>
+            <translation>Ed25519 (recommended)</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>RSA 4096 (per server datati)</source>
+            <translation>RSA 4096 (for older servers)</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Tipo</source>
+            <translation>Type</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Sfoglia…</source>
+            <translation>Browse…</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>File della chiave privata</source>
+            <translation>Private key file</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Chiave privata</source>
+            <translation>Private key</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>facoltativa, consigliata</source>
+            <translation>optional, recommended</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Passphrase</source>
+            <translation>Passphrase</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Conferma passphrase</source>
+            <translation>Confirm passphrase</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Commento</source>
+            <translation>Comment</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Usa questa chiave per «%1» (la passphrase viene salvata nell'archivio)</source>
+            <translation>Use this key for “%1” (the passphrase is saved in the archive)</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Copia subito la chiave pubblica sull'host (con le credenziali attuali)</source>
+            <translation>Copy the public key to the host now (with the current credentials)</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Genera</source>
+            <translation>Generate</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Il file esiste già: scegli un altro nome per non sovrascrivere una chiave esistente.</source>
+            <translation>The file already exists: choose another name so as not to overwrite an existing key.</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Le due passphrase non coincidono.</source>
+            <translation>The two passphrases do not match.</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>ssh-keygen non trovato: installa il client OpenSSH.</source>
+            <translation>ssh-keygen not found: install the OpenSSH client.</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>ssh-keygen non è riuscito a creare la chiave.
+
+%1</source>
+            <translation>ssh-keygen could not create the key.
+
+%1</translation>
+        </message>
+    </context>
+    <context>
+        <name>KnownHostsDialog</name>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiavi host conosciute</source>
+            <translation>Known host keys</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiavi accettate da SSH Manager, in %1. Rimuovere una chiave fa chiedere di nuovo la verifica alla prossima connessione.</source>
+            <translation>Keys accepted by SSH Manager, in %1. Removing a key makes the next connection ask for verification again.</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Filtra per host, connessione o fingerprint…</source>
+            <translation>Filter by host, connection or fingerprint…</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Host</source>
+            <translation>Host</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Tipo</source>
+            <translation>Type</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Fingerprint (SHA256)</source>
+            <translation>Fingerprint (SHA256)</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Prima connessione</source>
+            <translation>First connection</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Connessioni</source>
+            <translation>Connections</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Rimuovi</source>
+            <translation>Remove</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Copia fingerprint</source>
+            <translation>Copy fingerprint</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Importa da OpenSSH…</source>
+            <translation>Import from OpenSSH…</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Aggiunge le chiavi di %1 non ancora presenti</source>
+            <translation>Adds the keys of %1 that are not present yet</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiudi</source>
+            <translation>Close</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Impossibile leggere il file: %1</source>
+            <translation>Cannot read the file: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>(nome cifrato)</source>
+            <translation>(hashed name)</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Voce scritta con HashKnownHosts: il nome dell'host non è leggibile</source>
+            <translation>Entry written with HashKnownHosts: the host name is not readable</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiave accettata prima che SSH Manager registrasse le date, o importata</source>
+            <translation>Key accepted before SSH Manager recorded dates, or imported</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>la chiave di %1</source>
+            <translation>the key of %1</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>%1 chiavi</source>
+            <translation>%1 keys</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Rimuovi chiavi</source>
+            <translation>Remove keys</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Rimuovere %1? Alla prossima connessione verrà chiesto di verificare di nuovo la chiave dell'host.</source>
+            <translation>Remove %1? The next connection will ask to verify the host key again.</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Impossibile aggiornare il file: %1</source>
+            <translation>Cannot update the file: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Importa da OpenSSH</source>
+            <translation>Import from OpenSSH</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Importazione non riuscita: %1</source>
+            <translation>Import failed: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Nessuna chiave nuova da importare.</source>
+            <translation>No new keys to import.</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiavi importate: %1.</source>
+            <translation>Keys imported: %1.</translation>
         </message>
     </context>
     <context>
@@ -837,6 +2283,21 @@
             <translation>Cascade</translation>
         </message>
         <message>
+            <location filename="../src/mainwindow.cpp" line="386" />
+            <source>Vista a schede</source>
+            <translation>Tabbed view</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="387" />
+            <source>Schede</source>
+            <translation>Tabs</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="388" />
+            <source>Mostra le sessioni come schede invece che come finestre</source>
+            <translation>Show sessions as tabs instead of windows</translation>
+        </message>
+        <message>
             <location filename="../src/mainwindow.cpp" line="381" />
             <source>Massimizza finestra</source>
             <translation>Maximize window</translation>
@@ -1049,6 +2510,96 @@
             <location filename="../src/mainwindow.cpp" line="776" />
             <source>Filtri connessioni</source>
             <translation>Connection filters</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1142" />
+            <source>solo preferiti</source>
+            <translation>favorites only</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1144" />
+            <source>tag: %1</source>
+            <translation>tag: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1166" />
+            <source>Filtri connessioni — attivi: %1</source>
+            <translation>Connection filters — active: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1070" />
+            <source>Tunnel</source>
+            <translation>Tunnels</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1076" />
+            <source>Locale</source>
+            <translation>Local</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1076" />
+            <source>Remoto</source>
+            <translation>Remote</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1106" />
+            <source>Vai alla sessione</source>
+            <translation>Go to session</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1107" />
+            <source>Copia indirizzo locale</source>
+            <translation>Copy local address</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1108" />
+            <source>Apri nel browser</source>
+            <translation>Open in browser</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1158" />
+            <source>%1 → %2 tramite %3</source>
+            <translation>%1 → %2 via %3</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1167" />
+            <source>Tunnel (%1)</source>
+            <translation>Tunnels (%1)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1194" />
+            <source>chiuso</source>
+            <translation>closed</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1195" />
+            <source>La sessione è terminata</source>
+            <translation>The session has ended</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1200" />
+            <source>attivo</source>
+            <translation>active</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1203" />
+            <source>in ascolto</source>
+            <translation>listening</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1204" />
+            <source>La porta locale è aperta da ssh</source>
+            <translation>The local port is open by ssh</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1207" />
+            <source>in attesa</source>
+            <translation>waiting</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="1208" />
+            <source>ssh non ha (ancora) aperto la porta: autenticazione in corso, oppure porta già occupata da un altro programma</source>
+            <translation>ssh has not opened the port (yet): authentication in progress, or the port is already used by another program</translation>
         </message>
         <message>
             <location filename="../src/mainwindow.cpp" line="789" />
@@ -1428,6 +2979,1057 @@ Sessions already open will stay active. Continue?</translation>
             <source>&lt;h3&gt;SSH Manager&lt;/h3&gt;&lt;p&gt;Gestore di sessioni SSH con finestre MDI, costruito con Qt %1 e QTermWidget.&lt;/p&gt;&lt;p&gt;Connessioni e chiavi private sono raccolte in un database cifrato:&lt;br&gt;&lt;code&gt;%2&lt;/code&gt;&lt;br&gt;protetto da master password (AES-256-GCM, chiave PBKDF2). Il blocco automatico è impostabile dal menu Sicurezza.&lt;/p&gt;&lt;p&gt;Le sessioni usano il client OpenSSH di sistema: chiavi, agent e configurazione standard funzionano come da terminale.&lt;/p&gt;</source>
             <translation>&lt;h3&gt;SSH Manager&lt;/h3&gt;&lt;p&gt;SSH session manager with MDI windows, built with Qt %1 and QTermWidget.&lt;/p&gt;&lt;p&gt;Connections and private keys are stored in an encrypted database:&lt;br&gt;&lt;code&gt;%2&lt;/code&gt;&lt;br&gt;protected by a master password (AES-256-GCM, PBKDF2 key). Auto-lock can be set from the Security menu.&lt;/p&gt;&lt;p&gt;Sessions use the system OpenSSH client: keys, agent and standard configuration work as in a terminal.&lt;/p&gt;</translation>
         </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Avvia tunnel in background</source>
+            <translation>Start tunnels in background</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Avvia tunnel</source>
+            <translation>Start tunnels</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Avvia i tunnel della connessione selezionata senza aprire un terminale, con riconnessione automatica</source>
+            <translation>Start the tunnels of the selected connection without opening a terminal, reconnecting automatically</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tipo</source>
+            <translation>Type</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Connessione</source>
+            <translation>Connection</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Riavvia</source>
+            <translation>Restart</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ferma tunnel di %1</source>
+            <translation>Stop tunnels of %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia messaggio di errore</source>
+            <translation>Copy error message</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia log di ssh</source>
+            <translation>Copy ssh log</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Locale: porta su questo computer inoltrata a una destinazione raggiunta dal server</source>
+            <translation>Local: port on this computer forwarded to a destination reached from the server</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Remoto: porta sul server inoltrata a una destinazione raggiunta da questo computer</source>
+            <translation>Remote: port on the server forwarded to a destination reached from this computer</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>server %1</source>
+            <translation>server %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Dinamico: proxy SOCKS su questo computer</source>
+            <translation>Dynamic: SOCKS proxy on this computer</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>SOCKS</source>
+            <translation>SOCKS</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel in background, senza terminale</source>
+            <translation>Background tunnels, without a terminal</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel della sessione %1</source>
+            <translation>Tunnels of session %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>La porta è sul server: in una sessione con terminale lo stato non è verificabile. Avvia i tunnel in background per averne la conferma.</source>
+            <translation>The port is on the server: in a terminal session its state cannot be checked. Start the tunnels in background to get it confirmed.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>in avvio</source>
+            <translation>starting</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Connessione e autenticazione in corso</source>
+            <translation>Connecting and authenticating</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>in ascolto sul server</source>
+            <translation>listening on the server</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Inoltro confermato da ssh</source>
+            <translation>Forwarding confirmed by ssh</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>riconnessione tra %1 s</source>
+            <translation>reconnecting in %1 s</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>errore</source>
+            <translation>error</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>fermato</source>
+            <translation>stopped</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>I tunnel di %1 sono già attivi</source>
+            <translation>The tunnels of %1 are already running</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Impossibile avviare i tunnel</source>
+            <translation>Cannot start the tunnels</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel di %1 avviati in background</source>
+            <translation>Tunnels of %1 started in background</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel di %1 fermati</source>
+            <translation>Tunnels of %1 stopped</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>SSH Manager è ancora attivo</source>
+            <translation>SSH Manager is still running</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>I tunnel in background continuano a funzionare. Usa Esci dal menu della tray per chiudere l'app.</source>
+            <translation>Background tunnels keep running. Use Quit from the tray menu to close the app.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel di %1 interrotto</source>
+            <translation>Tunnels of %1 interrupted</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%1
+Nuovo tentativo tra %2 s.</source>
+            <translation>%1
+Retrying in %2 s.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel di %1 in errore</source>
+            <translation>Tunnels of %1 failed</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel di %1 di nuovo attivo</source>
+            <translation>Tunnels of %1 are up again</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>attivi: %1</source>
+            <translation>running: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>in riconnessione: %1</source>
+            <translation>reconnecting: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>in errore: %1</source>
+            <translation>failed: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>SSH Manager — tunnel: %1</source>
+            <translation>SSH Manager — tunnels: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Mostra SSH Manager</source>
+            <translation>Show SSH Manager</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nessun tunnel in background</source>
+            <translation>No background tunnels</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tunnel in background</source>
+            <translation>Background tunnels</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%1 — %2</source>
+            <translation>%1 — %2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ferma</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Resta nella tray alla chiusura</source>
+            <translation>Keep in tray when closed</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiudendo la finestra con tunnel in background attivi, l'app resta nella tray invece di fermarli</source>
+            <translation>When the window is closed with background tunnels running, the app stays in the tray instead of stopping them</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Trasferisci file</source>
+            <translation>Transfer files</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Blocca l'archivio dopo un periodo di inattività</source>
+            <translation>Lock the archive after a period of inactivity</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiavi host…</source>
+            <translation>Host keys…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiavi host</source>
+            <translation>Host keys</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Elenco delle chiavi dei server accettate, con fingerprint e data del primo contatto</source>
+            <translation>Accepted server keys, with fingerprint and date of first contact</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiave host cambiata</source>
+            <translation>Host key changed</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>&lt;b&gt;La chiave di %1 non corrisponde a quella salvata.&lt;/b&gt;</source>
+            <translation>&lt;b&gt;The key of %1 does not match the saved one.&lt;/b&gt;</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Succede quando il server viene reinstallato o la sua chiave rigenerata, ma può anche indicare un attacco man-in-the-middle. Prima di accettare la nuova chiave, verifica con l'amministratore del server che il cambio sia previsto.
+
+Rimuovendo la chiave salvata, alla riconnessione verrà mostrato il nuovo fingerprint da confermare.</source>
+            <translation>This happens when the server is reinstalled or its key regenerated, but it can also mean a man-in-the-middle attack. Before accepting the new key, check with the server administrator that the change is expected.
+
+If you remove the saved key, the new fingerprint will be shown for confirmation when reconnecting.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Fingerprint della chiave presentata ora dal server:
+%1</source>
+            <translation>Fingerprint of the key the server presents now:
+%1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Rimuovi la chiave salvata e riconnetti</source>
+            <translation>Remove the saved key and reconnect</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Gestisci chiavi host…</source>
+            <translation>Manage host keys…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Impossibile aggiornare il file delle chiavi: %1</source>
+            <translation>Cannot update the key file: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nuovo snippet…</source>
+            <translation>New snippet…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nuovo snippet</source>
+            <translation>New snippet</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Salva un comando da riusare, con variabili</source>
+            <translation>Save a reusable command, with variables</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Comandi</source>
+            <translation>Commands</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Snippet</source>
+            <translation>Snippets</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Filtra snippet…</source>
+            <translation>Filter snippets…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Comando</source>
+            <translation>Command</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Invia alla sessione attiva</source>
+            <translation>Send to the active session</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Invia alle sessioni incluse nella trasmissione</source>
+            <translation>Send to the sessions included in the broadcast</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Elimina snippet</source>
+            <translation>Delete snippet</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Eliminare lo snippet &quot;%1&quot;?</source>
+            <translation>Delete the snippet &quot;%1&quot;?</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Cronologia</source>
+            <translation>History</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esegui nella sessione attiva</source>
+            <translation>Run in the active session</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Inserisci senza eseguire</source>
+            <translation>Insert without running</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Salva come snippet…</source>
+            <translation>Save as snippet…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia</source>
+            <translation>Copy</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Elimina dalla cronologia</source>
+            <translation>Remove from history</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Svuota cronologia</source>
+            <translation>Clear history</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Eliminare tutti i comandi registrati per %1?</source>
+            <translation>Delete every command recorded for %1?</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Cronologia — %1</source>
+            <translation>History — %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nessuna sessione inclusa nella trasmissione</source>
+            <translation>No session included in the broadcast</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nessuna sessione attiva</source>
+            <translation>No active session</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Variabili</source>
+            <translation>Variables</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Livello principale</source>
+            <translation>Top level</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Posizione</source>
+            <translation>Location</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ripristina layout predefinito</source>
+            <translation>Restore default layout</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ripristina layout</source>
+            <translation>Restore layout</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Riporta pannelli e schede nella posizione e dimensione iniziali</source>
+            <translation>Put panels and tabs back in their initial position and size</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Layout dei pannelli ripristinato</source>
+            <translation>Panel layout restored</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Raggiungibilità automatica</source>
+            <translation>Automatic reachability</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Raggiungibilità</source>
+            <translation>Reachability</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Verifica periodicamente se gli host rispondono e mostra un indicatore nell'albero</source>
+            <translation>Periodically check whether the hosts answer and show an indicator in the tree</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Verifica raggiungibilità ora</source>
+            <translation>Check reachability now</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Verifica ora</source>
+            <translation>Check now</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Verifica subito tutti gli host salvati</source>
+            <translation>Check every saved host now</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Verifica raggiungibilità</source>
+            <translation>Check reachability</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Host raggiungibile solo tramite jump host</source>
+            <translation>Host reachable only through a jump host</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>
+Raggiungibilità: non verificata (tramite jump host)</source>
+            <translation>
+Reachability: not checked (through a jump host)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>
+Raggiungibile: %1 ms%2 (verificato alle %3)</source>
+            <translation>
+Reachable: %1 ms%2 (checked at %3)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>
+Non raggiungibile: %1 (verificato alle %2)</source>
+            <translation>
+Not reachable: %1 (checked at %2)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Sessione %1 terminata: %2</source>
+            <translation>Session %1 ended: %2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Sessione %1 terminata</source>
+            <translation>Session %1 ended</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Sblocca l'archivio per riconnettere %1</source>
+            <translation>Unlock the archive to reconnect %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Raggiungibilità degli host</source>
+            <translation>Host reachability</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ogni %1 minuti SSH Manager apre una connessione TCP verso ogni host salvato, legge la versione del server SSH e la chiude subito, senza autenticarsi.
+
+Il server registra comunque queste connessioni nei suoi log. Su host protetti da fail2ban in modalità aggressiva potrebbero contare come tentativi sospetti: in quel caso lascia l'opzione disattivata e usa &quot;Verifica raggiungibilità&quot; dal menu dell'host quando serve.</source>
+            <translation>Every %1 minutes SSH Manager opens a TCP connection to every saved host, reads the SSH server version and closes it at once, without authenticating.
+
+The server still records these connections in its logs. On hosts protected by fail2ban in aggressive mode they may count as suspicious attempts: in that case leave the option off and use &quot;Check reachability&quot; from the host menu when needed.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Output fermo in %1</source>
+            <translation>Output stopped in %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Il terminale non produce output da 10 secondi.</source>
+            <translation>The terminal has produced no output for 10 seconds.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esegui su più host…</source>
+            <translation>Run on several hosts…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esegui su più host</source>
+            <translation>Run on several hosts</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esegui un comando sugli host selezionati e raccogli l'esito di ciascuno</source>
+            <translation>Run a command on the selected hosts and collect each result</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Stato dell'host…</source>
+            <translation>Host status…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Stato host</source>
+            <translation>Host status</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Carico, memoria, dischi, servizi in errore e processi dell'host selezionato</source>
+            <translation>Load, memory, disks, failed services and processes of the selected host</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Strumenti</source>
+            <translation>Tools</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Archivio bloccato: credenziali non disponibili.</source>
+            <translation>Archive locked: credentials not available.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Password non inserita.</source>
+            <translation>Password not entered.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Stato dell'host</source>
+            <translation>Host status</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tema di sistema</source>
+            <translation>System theme</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tema chiaro</source>
+            <translation>Light theme</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tema scuro</source>
+            <translation>Dark theme</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Aspetto</source>
+            <translation>Appearance</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Campanello</source>
+            <translation>Bell</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nuovo output</source>
+            <translation>New output</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Ordinamento</source>
+            <translation>Sort order</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Manuale (trascina per spostare)</source>
+            <translation>Manual (drag to move)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Alfabetico</source>
+            <translation>Alphabetical</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Riordina alfabeticamente l'archivio</source>
+            <translation>Sort the archive alphabetically</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Salva l'ordine alfabetico come ordine manuale, da ritoccare poi a mano</source>
+            <translation>Save the alphabetical order as the manual order, to adjust by hand afterwards</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Archivio riordinato alfabeticamente</source>
+            <translation>Archive sorted alphabetically</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Lingua di sistema</source>
+            <translation>System language</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Lingua</source>
+            <translation>Language</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>La nuova lingua sarà applicata al prossimo avvio di SSH Manager.</source>
+            <translation>The new language will be applied the next time SSH Manager starts.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tema</source>
+            <translation>Theme</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tema dell'applicazione: di sistema, chiaro o scuro</source>
+            <translation>Application theme: system, light or dark</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Lingua dell'interfaccia (al prossimo avvio)</source>
+            <translation>Interface language (at the next start)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Strumenti esterni…</source>
+            <translation>External tools…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Strumenti esterni</source>
+            <translation>External tools</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Programmi da avviare su una connessione (ping, tracert, ftp…), dal menu del tasto destro</source>
+            <translation>Programs to start on a connection (ping, tracert, ftp…), from the right-click menu</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Colonne</source>
+            <translation>Columns</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Preferito (★)</source>
+            <translation>Favorite (★)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Impossibile aprire %1</source>
+            <translation>Cannot open %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Impossibile avviare %1</source>
+            <translation>Cannot start %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%1 avviato per %2</source>
+            <translation>%1 started for %2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esporta connessioni…</source>
+            <translation>Export connections…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esporta</source>
+            <translation>Export</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esporta in un file cifrato le connessioni scelte (quelle selezionate o tutte), con o senza credenziali</source>
+            <translation>Export the chosen connections (the selected ones or all) to an encrypted file, with or without credentials</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importa connessioni…</source>
+            <translation>Import connections…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importa</source>
+            <translation>Import</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Aggiunge connessioni da un file esportato, o sostituisce l'intero archivio</source>
+            <translation>Adds connections from an exported file, or replaces the whole archive</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Il file esportato conterrà connessioni e credenziali cifrate con questa password. Servirà per importarlo, anche su un altro computer.</source>
+            <translation>The exported file will contain connections and credentials encrypted with this password. It is needed to import it, also on another computer.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Il file esportato conterrà le connessioni, senza credenziali, cifrate con questa password. Servirà per importarlo, anche su un altro computer.</source>
+            <translation>The exported file will contain the connections, without credentials, encrypted with this password. It is needed to import it, also on another computer.</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n connessione/i esportata/e in %1</source>
+            <translation>
+                <numerusform>%n connection exported to %1</numerusform>
+                <numerusform>%n connections exported to %1</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n aggiunta/e</source>
+            <translation>
+                <numerusform>%n added</numerusform>
+                <numerusform>%n added</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n aggiornata/e</source>
+            <translation>
+                <numerusform>%n updated</numerusform>
+                <numerusform>%n updated</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n copiata/e</source>
+            <translation>
+                <numerusform>%n copied</numerusform>
+                <numerusform>%n copied</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n saltata/e</source>
+            <translation>
+                <numerusform>%n skipped</numerusform>
+                <numerusform>%n skipped</numerusform>
+            </translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%n snippet</source>
+            <translation>
+                <numerusform>%n snippet</numerusform>
+                <numerusform>%n snippets</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importa connessioni</source>
+            <translation>Import connections</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nessuna modifica.</source>
+            <translation>No changes.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importazione completata: %1.</source>
+            <translation>Import completed: %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>OpenSSH</source>
+            <translation>OpenSSH</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiavi SSH</source>
+            <translation>SSH keys</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importa da ~/.ssh/config…</source>
+            <translation>Import from ~/.ssh/config…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Da OpenSSH</source>
+            <translation>From OpenSSH</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Crea connessioni dagli host del file di configurazione di OpenSSH (HostName, User, Port, IdentityFile, ProxyJump)</source>
+            <translation>Create connections from the hosts of the OpenSSH configuration file (HostName, User, Port, IdentityFile, ProxyJump)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esporta per ~/.ssh/config…</source>
+            <translation>Export for ~/.ssh/config…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Per OpenSSH</source>
+            <translation>For OpenSSH</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Blocchi Host per il file di configurazione di OpenSSH, dalle connessioni selezionate o da tutte</source>
+            <translation>Host blocks for the OpenSSH configuration file, from the selected connections or all of them</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Genera chiave SSH…</source>
+            <translation>Generate SSH key…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Genera chiave</source>
+            <translation>Generate key</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Crea una coppia di chiavi con ssh-keygen; dalla connessione selezionata può anche installarla sull'host</source>
+            <translation>Create a key pair with ssh-keygen; from the selected connection it can also install it on the host</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia la chiave pubblica sull'host…</source>
+            <translation>Copy public key to host…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia chiave sull'host</source>
+            <translation>Copy key to host</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Aggiunge una chiave pubblica ad authorized_keys dell'host selezionato, come ssh-copy-id</source>
+            <translation>Add a public key to the selected host's authorized_keys, like ssh-copy-id</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Importa da OpenSSH</source>
+            <translation>Import from OpenSSH</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Configurazione OpenSSH (config *.conf);;Tutti i file (*)</source>
+            <translation>OpenSSH configuration (config *.conf);;All files (*)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Nessun host trovato in %1 (i blocchi con soli caratteri jolly forniscono solo valori predefiniti).</source>
+            <translation>No hosts found in %1 (blocks with only wildcards just provide defaults).</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Da controllare:</source>
+            <translation>To check:</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Esporta per OpenSSH</source>
+            <translation>Export for OpenSSH</translation>
+        </message>
+        <message numerus="yes">
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Blocchi da aggiungere a ~/.ssh/config per %n connessione/i. Le password non vengono esportate.</source>
+            <translation>
+                <numerusform>Blocks to add to ~/.ssh/config for %n connection. Passwords are not exported.</numerusform>
+                <numerusform>Blocks to add to ~/.ssh/config for %n connections. Passwords are not exported.</numerusform>
+            </translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Salva…</source>
+            <translation>Save…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Configurazione copiata negli appunti</source>
+            <translation>Configuration copied to the clipboard</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Salva configurazione</source>
+            <translation>Save configuration</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tutti i file (*)</source>
+            <translation>All files (*)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Sovrascrivere ~/.ssh/config? In alternativa salva in un file a parte e aggiungi a ~/.ssh/config la riga
+Include config_sshmanager</source>
+            <translation>Overwrite ~/.ssh/config? Alternatively save to a separate file and add this line to ~/.ssh/config:
+Include config_sshmanager</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Impossibile scrivere %1.</source>
+            <translation>Cannot write %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Configurazione salvata in %1</source>
+            <translation>Configuration saved to %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiave %1 creata e impostata per %2</source>
+            <translation>Key %1 created and set for %2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Genera chiave SSH</source>
+            <translation>Generate SSH key</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiave creata:
+%1
+%1.pub</source>
+            <translation>Key created:
+%1
+%1.pub</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Copia la chiave pubblica</source>
+            <translation>Copy public key</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Installazione della chiave su %1…</source>
+            <translation>Installing the key on %1…</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tempo scaduto.</source>
+            <translation>Timed out.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Non è stato possibile installare la chiave su %1.
+
+%2</source>
+            <translation>The key could not be installed on %1.
+
+%2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>La chiave era già presente su %1.</source>
+            <translation>The key was already on %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiave installata su %1.</source>
+            <translation>Key installed on %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Usare d'ora in poi questa chiave per accedere a %1?
+%2</source>
+            <translation>Use this key to log in to %1 from now on?
+%2</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Chiave archiviata: %1</source>
+            <translation>Stored key: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Tag: %1</source>
+            <translation>Tags: %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Portabile</source>
+            <translation>Portable</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>Archivio, chiavi host e impostazioni in %1</source>
+            <translation>Vault, host keys and settings in %1</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>SSH Manager (portabile)</source>
+            <translation>SSH Manager (portable)</translation>
+        </message>
+        <message>
+            <location filename="../src/mainwindow.cpp" line="0" />
+            <source>%1 — bloccato</source>
+            <translation>%1 — locked</translation>
+        </message>
     </context>
     <context>
         <name>MasterPasswordDialog</name>
@@ -1550,11 +4152,283 @@ Sessions already open will stay active. Continue?</translation>
         </message>
     </context>
     <context>
+        <name>PublicKeyDialog</name>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Copia la chiave pubblica sull'host</source>
+            <translation>Copy public key to host</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>La chiave pubblica scelta viene aggiunta a ~/.ssh/authorized_keys di %1 (se non c'è già), accedendo con le credenziali attuali della connessione.</source>
+            <translation>The chosen public key is added to ~/.ssh/authorized_keys on %1 (unless it is there already), logging in with the connection's current credentials.</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Sfoglia…</source>
+            <translation>Browse…</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Chiave pubblica</source>
+            <translation>Public key</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Chiavi pubbliche (*.pub);;Tutti i file (*)</source>
+            <translation>Public keys (*.pub);;All files (*)</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Copia sull'host</source>
+            <translation>Copy to host</translation>
+        </message>
+    </context>
+    <context>
+        <name>QObject</name>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Verifica chiave host</source>
+            <translation>Verify host key</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>&lt;b&gt;Prima connessione a %1&lt;/b&gt;&lt;br&gt;Il server si identifica con una chiave che non è ancora tra quelle conosciute. Prima di accettarla, confronta il fingerprint con quello fornito dall'amministratore del server.</source>
+            <translation>&lt;b&gt;First connection to %1&lt;/b&gt;&lt;br&gt;The server identifies itself with a key that is not known yet. Before accepting it, compare the fingerprint with the one given by the server administrator.</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>un host sconosciuto</source>
+            <translation>an unknown host</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Chiave %1</source>
+            <translation>%1 key</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Accetta e connetti</source>
+            <translation>Accept and connect</translation>
+        </message>
+        <message>
+            <location filename="../src/knownhostsdialog.cpp" line="0" />
+            <source>Copia fingerprint</source>
+            <translation>Copy fingerprint</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Valori per le variabili dello snippet:</source>
+            <translation>Values for the snippet variables:</translation>
+        </message>
+    </context>
+    <context>
+        <name>RemoteRun</name>
+        <message>
+            <location filename="../src/remoterun.cpp" line="0" />
+            <source>Il client &quot;ssh&quot; non è stato trovato in %1.</source>
+            <translation>The &quot;ssh&quot; client was not found in %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/remoterun.cpp" line="0" />
+            <source>Impossibile avviare %1.</source>
+            <translation>Cannot start %1.</translation>
+        </message>
+    </context>
+    <context>
+        <name>SessionEnd</name>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>La chiave del server è cambiata</source>
+            <translation>The server key has changed</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Chiave del server non verificata</source>
+            <translation>Server key not verified</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Autenticazione rifiutata</source>
+            <translation>Authentication refused</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Troppi tentativi di autenticazione</source>
+            <translation>Too many authentication attempts</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Nome host non risolto (DNS o VPN?)</source>
+            <translation>Host name not resolved (DNS or VPN?)</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Connessione rifiutata: ssh non è in ascolto su quella porta</source>
+            <translation>Connection refused: ssh is not listening on that port</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Server non raggiungibile (timeout)</source>
+            <translation>Server not reachable (timeout)</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Rete non raggiungibile</source>
+            <translation>Network unreachable</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Nessun percorso verso l'host</source>
+            <translation>No route to the host</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Il server ha smesso di rispondere (connessione persa)</source>
+            <translation>The server stopped answering (connection lost)</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Connessione interrotta</source>
+            <translation>Connection broken</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Connessione chiusa bruscamente dal server o dalla rete</source>
+            <translation>Connection reset by the server or the network</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Il server ha chiuso la connessione prima del login</source>
+            <translation>The server closed the connection before login</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Connessione chiusa dal server</source>
+            <translation>Connection closed by the server</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>La shell locale è stata interrotta</source>
+            <translation>The local shell was interrupted</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Il client ssh è stato interrotto</source>
+            <translation>The ssh client was interrupted</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Sessione terminata</source>
+            <translation>Session ended</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Shell chiusa</source>
+            <translation>Shell closed</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Disconnessione normale</source>
+            <translation>Normal logout</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>Errore di ssh</source>
+            <translation>ssh error</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionend.cpp" line="0" />
+            <source>La shell è uscita con codice %1</source>
+            <translation>The shell exited with code %1</translation>
+        </message>
+    </context>
+    <context>
         <name>SessionView</name>
         <message>
             <location filename="../src/sessionview.cpp" line="97" />
             <source>sessione locale</source>
             <translation>local session</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="191" />
+            <source>Copia</source>
+            <translation>Copy</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="196" />
+            <source>Incolla</source>
+            <translation>Paste</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="211" />
+            <source>Pulisci terminale</source>
+            <translation>Clear terminal</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Riconnetti</source>
+            <translation>Reconnect</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Apri di nuovo la connessione in questa posizione</source>
+            <translation>Open the connection again in this place</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Chiudi</source>
+            <translation>Close</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>codice di uscita %1</source>
+            <translation>exit code %1</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>durata %1 h %2 min</source>
+            <translation>lasted %1 h %2 min</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>durata %1 min</source>
+            <translation>lasted %1 min</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>durata %1 s</source>
+            <translation>lasted %1 s</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Avvisami quando l'output si ferma</source>
+            <translation>Notify me when the output stops</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Notifica quando il terminale resta senza output per 10 secondi, ad esempio alla fine di un comando lungo</source>
+            <translation>Notify when the terminal stays without output for 10 seconds, for example at the end of a long command</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Connessione rapida a %1</source>
+            <translation>Quick connection to %1</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Cerca nel terminale…</source>
+            <translation>Search in terminal…</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Copia alla selezione</source>
+            <translation>Copy on select</translation>
+        </message>
+        <message>
+            <location filename="../src/sessionview.cpp" line="0" />
+            <source>Copia automaticamente negli appunti il testo selezionato col mouse</source>
+            <translation>Automatically copy the text selected with the mouse to the clipboard</translation>
         </message>
     </context>
     <context>
@@ -1709,6 +4583,89 @@ Sessions already open will stay active. Continue?</translation>
             <source>Impossibile creare la cartella %1.</source>
             <translation>Could not create the folder %1.</translation>
         </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>Dati incompleti ricevuti per %1.</source>
+            <translation>Incomplete data received for %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>Impossibile creare %1: %2</source>
+            <translation>Cannot create %1: %2</translation>
+        </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>Impossibile rinominare %1: %2</source>
+            <translation>Cannot rename %1: %2</translation>
+        </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>%1: %2</source>
+            <translation>%1: %2</translation>
+        </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>Impossibile eliminare %1: %2</source>
+            <translation>Cannot delete %1: %2</translation>
+        </message>
+        <message>
+            <location filename="../src/sftpclient.cpp" line="0" />
+            <source>Impossibile cambiare i permessi di %1: %2</source>
+            <translation>Cannot change the permissions of %1: %2</translation>
+        </message>
+    </context>
+    <context>
+        <name>SnippetDialog</name>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Nuovo snippet</source>
+            <translation>New snippet</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Modifica snippet</source>
+            <translation>Edit snippet</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>es. Spazio su disco</source>
+            <translation>e.g. Disk space</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Nome</source>
+            <translation>Name</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>es. df -h ${path}</source>
+            <translation>e.g. df -h ${path}</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Comando</source>
+            <translation>Command</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Descrizione</source>
+            <translation>Description</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Esegui subito (invia anche Invio)</source>
+            <translation>Run immediately (also send Enter)</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Variabili: ${host}, ${user}, ${port} e ${name} vengono dalla sessione di destinazione; ogni altra ${variabile} viene chiesta all'invio. Più righe vengono eseguite una dopo l'altra.</source>
+            <translation>Variables: ${host}, ${user}, ${port} and ${name} come from the target session; any other ${variable} is asked when sending. Several lines run one after the other.</translation>
+        </message>
+        <message>
+            <location filename="../src/snippetdialog.cpp" line="0" />
+            <source>Il comando non può essere vuoto.</source>
+            <translation>The command cannot be empty.</translation>
+        </message>
     </context>
     <context>
         <name>TerminalDialog</name>
@@ -1801,6 +4758,57 @@ Sessions already open will stay active. Continue?</translation>
             <location filename="../src/terminaldialog.cpp" line="60" />
             <source>Barra</source>
             <translation>Bar</translation>
+        </message>
+        <message>
+            <location filename="../src/terminaldialog.cpp" line="0" />
+            <source>Automatico (segue il tema dell'app)</source>
+            <translation>Automatic (follows the app theme)</translation>
+        </message>
+    </context>
+    <context>
+        <name>TunnelService</name>
+        <message>
+            <location filename="../src/tunnelservice.cpp" line="0" />
+            <source>Il client &quot;ssh&quot; non è stato trovato in %1.</source>
+            <translation>The &quot;ssh&quot; client was not found in %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/tunnelservice.cpp" line="0" />
+            <source>Impossibile avviare %1.</source>
+            <translation>Cannot start %1.</translation>
+        </message>
+        <message>
+            <location filename="../src/tunnelservice.cpp" line="0" />
+            <source>La connessione si è chiusa</source>
+            <translation>The connection was closed</translation>
+        </message>
+    </context>
+    <context>
+        <name>openssh</name>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>Impossibile leggere %1</source>
+            <translation>Cannot read %1</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>%1: ProxyCommand non è supportato, va riconfigurato come jump host</source>
+            <translation>%1: ProxyCommand is not supported, set it up again as a jump host</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>%1: jump host «%2» non riconosciuto</source>
+            <translation>%1: jump host “%2” not recognised</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>%1: catena ProxyJump «%2» ridotta all'ultimo salto</source>
+            <translation>%1: ProxyJump chain “%2” reduced to the last hop</translation>
+        </message>
+        <message>
+            <location filename="../src/openssh.cpp" line="0" />
+            <source>%1 non contiene una chiave pubblica OpenSSH.</source>
+            <translation>%1 does not contain an OpenSSH public key.</translation>
         </message>
     </context>
 </TS>

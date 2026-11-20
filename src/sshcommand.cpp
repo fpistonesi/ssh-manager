@@ -2,10 +2,12 @@
 
 #include "crypto.h"
 #include "paths.h"
+#include "snippets.h"
 
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -13,8 +15,69 @@
 #include <QStandardPaths>
 #include <QUuid>
 
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#endif
+
 namespace {
 
+#ifdef _WIN32
+// OpenSSH for Windows does not run ProxyCommand through a shell: the expanded
+// string is handed to CreateProcessW as a command line, so arguments follow
+// the CommandLineToArgvW rules (double quotes, backslash escaping) and single
+// quotes are not special.
+QString shellQuote(const QString &value)
+{
+    if (!value.isEmpty()
+        && !value.contains(QRegularExpression(QStringLiteral("[\\s\"]"))))
+        return value;
+
+    QString quoted = QStringLiteral("\"");
+    int backslashes = 0;
+    for (const QChar c : value) {
+        if (c == QLatin1Char('\\')) {
+            ++backslashes;
+            continue;
+        }
+        if (c == QLatin1Char('"'))
+            quoted += QString(backslashes * 2 + 1, QLatin1Char('\\'));
+        else
+            quoted += QString(backslashes, QLatin1Char('\\'));
+        quoted += c;
+        backslashes = 0;
+    }
+    quoted += QString(backslashes * 2, QLatin1Char('\\'));
+    quoted += QLatin1Char('"');
+    return quoted;
+}
+
+// Path values inside "-o Option=value": OpenSSH splits some of them (e.g.
+// UserKnownHostsFile accepts a list) on whitespace, and Windows profile paths
+// may contain spaces ("C:/Users/Mario Rossi/...").
+QString optionPath(const QString &path)
+{
+    return path.contains(QLatin1Char(' ')) ? QLatin1Char('"') + path + QLatin1Char('"') : path;
+}
+
+QString sshExecutable()
+{
+    // OpenSSH client shipped with Windows 10/11 (optional feature, on by default).
+    QString exe = QStandardPaths::findExecutable(QStringLiteral("ssh"));
+    if (exe.isEmpty()) {
+        const QString builtin = qEnvironmentVariable("SystemRoot", QStringLiteral("C:\\Windows"))
+                                + QStringLiteral("\\System32\\OpenSSH\\ssh.exe");
+        if (QFileInfo::exists(builtin))
+            exe = builtin;
+    }
+    return exe.isEmpty() ? QStringLiteral("ssh.exe") : QDir::toNativeSeparators(exe);
+}
+#else
 QString shellQuote(const QString &value)
 {
     QString escaped = value;
@@ -22,11 +85,17 @@ QString shellQuote(const QString &value)
     return QLatin1Char('\'') + escaped + QLatin1Char('\'');
 }
 
+QString optionPath(const QString &path)
+{
+    return path;
+}
+
 QString sshExecutable()
 {
     const QString exe = QStandardPaths::findExecutable(QStringLiteral("ssh"));
     return exe.isEmpty() ? QStringLiteral("/usr/bin/ssh") : exe;
 }
+#endif
 
 bool safeHostToken(const QString &value)
 {
@@ -68,8 +137,10 @@ QStringList authOptions(const Connection &connection)
 QStringList commonOptions()
 {
     return {QStringLiteral("-o"),
-            QStringLiteral("UserKnownHostsFile=") + paths::knownHostsFile(),
-            QStringLiteral("-o"), QStringLiteral("StrictHostKeyChecking=accept-new"),
+            QStringLiteral("UserKnownHostsFile=") + optionPath(paths::knownHostsFile()),
+            // Unknown hosts are confirmed explicitly: the askpass helper shows
+            // the key fingerprint (see confirmHostKey()).
+            QStringLiteral("-o"), QStringLiteral("StrictHostKeyChecking=ask"),
             QStringLiteral("-o"), QStringLiteral("ConnectTimeout=20"),
             QStringLiteral("-o"), QStringLiteral("NumberOfPasswordPrompts=1"),
             QStringLiteral("-o"), QStringLiteral("ServerAliveInterval=30"),
@@ -91,27 +162,60 @@ QString hopCommand(const QString &ssh, const Connection &hop, const QString &nes
     quoted.reserve(args.size());
     for (const QString &arg : args)
         quoted << shellQuote(arg);
+#ifdef _WIN32
+    // the ssh path itself may contain spaces (e.g. C:\Program Files\OpenSSH)
+    return shellQuote(ssh) + QLatin1Char(' ') + quoted.join(QLatin1Char(' '));
+#else
     return ssh + QLatin1Char(' ') + quoted.join(QLatin1Char(' '));
+#endif
 }
 
-QString tunnelSpec(const TunnelConfig &tunnel)
+QString bracketHost(const QString &host)
 {
-    QString spec;
-    const QString address = tunnel.localAddress.trimmed();
-    if (!address.isEmpty()) {
-        if (address.contains(QLatin1Char(':')))
-            spec += QLatin1Char('[') + address + QLatin1Char(']');
-        else
-            spec += address;
-        spec += QLatin1Char(':');
+    return host.contains(QLatin1Char(':')) ? QLatin1Char('[') + host + QLatin1Char(']') : host;
+}
+
+// "[bind:]port" with an optional bind address.
+QString bindSpec(const QString &address, quint16 port)
+{
+    const QString trimmed = address.trimmed();
+    return (trimmed.isEmpty() ? QString() : bracketHost(trimmed) + QLatin1Char(':'))
+           + QString::number(port);
+}
+
+// Appends the -L/-R/-D option for one tunnel, or explains what is missing.
+bool appendTunnel(const TunnelConfig &tunnel, const QString &connectionName, QStringList *args,
+                  QString *error)
+{
+    const QString remoteHost = tunnel.remoteHost.trimmed();
+    QString localHost = tunnel.localAddress.trimmed();
+
+    switch (tunnel.type) {
+    case TunnelType::Local:
+        if (tunnel.localPort == 0 || tunnel.remotePort == 0 || remoteHost.isEmpty())
+            break;
+        *args << QStringLiteral("-L")
+              << bindSpec(localHost, tunnel.localPort) + QLatin1Char(':') + bracketHost(remoteHost)
+                     + QLatin1Char(':') + QString::number(tunnel.remotePort);
+        return true;
+    case TunnelType::Remote:
+        // Listen on the server, connect to localAddress:localPort from here.
+        if (tunnel.localPort == 0 || tunnel.remotePort == 0)
+            break;
+        if (localHost.isEmpty())
+            localHost = QStringLiteral("localhost");
+        *args << QStringLiteral("-R")
+              << bindSpec(remoteHost, tunnel.remotePort) + QLatin1Char(':') + bracketHost(localHost)
+                     + QLatin1Char(':') + QString::number(tunnel.localPort);
+        return true;
+    case TunnelType::Dynamic:
+        if (tunnel.localPort == 0)
+            break;
+        *args << QStringLiteral("-D") << bindSpec(localHost, tunnel.localPort);
+        return true;
     }
-    spec += QString::number(tunnel.localPort) + QLatin1Char(':');
-    if (tunnel.remoteHost.contains(QLatin1Char(':')))
-        spec += QLatin1Char('[') + tunnel.remoteHost + QLatin1Char(']');
-    else
-        spec += tunnel.remoteHost;
-    spec += QLatin1Char(':') + QString::number(tunnel.remotePort);
-    return spec;
+    *error = QStringLiteral("Tunnel incompleto: controlla porte e host di \"%1\".").arg(connectionName);
+    return false;
 }
 
 bool writePrivateFile(const QString &path, const QByteArray &contents)
@@ -227,11 +331,23 @@ QString proxyOption(const QString &ssh, const QVector<Connection> &hops)
 QStringList askpassEnvironment(const QString &askpassFile)
 {
     QStringList environment;
+#ifdef _WIN32
+    // The askpass helper may show the host key dialog: let it come to the
+    // foreground instead of only flashing in the taskbar. Called right after
+    // a user action, while this process owns the foreground.
+    AllowSetForegroundWindow(ASFW_ANY);
+    // OpenSSH for Windows honours SSH_ASKPASS(_REQUIRE) and needs no DISPLAY.
+    environment << QStringLiteral("SSH_ASKPASS=")
+                       + QDir::toNativeSeparators(QCoreApplication::applicationFilePath())
+                << QStringLiteral("SSH_ASKPASS_REQUIRE=force")
+                << QStringLiteral("SSHMANAGER_ASKPASS_FILE=") + QDir::toNativeSeparators(askpassFile);
+#else
     environment << QStringLiteral("SSH_ASKPASS=") + QCoreApplication::applicationFilePath()
                 << QStringLiteral("SSH_ASKPASS_REQUIRE=force")
                 << QStringLiteral("SSHMANAGER_ASKPASS_FILE=") + askpassFile;
     if (qEnvironmentVariableIsEmpty("DISPLAY"))
         environment << QStringLiteral("DISPLAY=:0");
+#endif
     return environment;
 }
 
@@ -244,6 +360,10 @@ QString expandUserPath(const QString &path)
         return QDir::homePath();
     if (trimmed.startsWith(QLatin1String("~/")))
         return QDir::homePath() + trimmed.mid(1);
+#ifdef _WIN32
+    if (trimmed.startsWith(QLatin1String("~\\")))
+        return QDir::homePath() + QLatin1Char('/') + trimmed.mid(2);
+#endif
     return trimmed;
 }
 
@@ -331,8 +451,9 @@ SshPlan buildQuickSshPlan(const QString &user, const QString &host, quint16 port
     // No askpass file here and no PreferredAuthentications restriction: ssh can
     // use the agent, a key, or ask for a password directly in the terminal.
     plan.args << QStringLiteral("-o")
-              << QStringLiteral("UserKnownHostsFile=") + paths::knownHostsFile()
-              << QStringLiteral("-o") << QStringLiteral("StrictHostKeyChecking=accept-new")
+              << QStringLiteral("UserKnownHostsFile=") + optionPath(paths::knownHostsFile())
+              // No askpass here: ssh asks to confirm a new host key in the terminal.
+              << QStringLiteral("-o") << QStringLiteral("StrictHostKeyChecking=ask")
               << QStringLiteral("-o") << QStringLiteral("ConnectTimeout=20")
               << QStringLiteral("-o") << QStringLiteral("ServerAliveInterval=30")
               << QStringLiteral("-o") << QStringLiteral("ServerAliveCountMax=3")
@@ -343,14 +464,31 @@ SshPlan buildQuickSshPlan(const QString &user, const QString &host, quint16 port
     return plan;
 }
 
-SshPlan buildSshPlan(const Connection &connection, const QVector<Connection> &jumpChain,
-                     const QString &runtimeDir)
+enum class PlanMode { Session, Tunnels, Command };
+
+static SshPlan buildPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                         const QString &runtimeDir, PlanMode mode)
 {
     SshPlan plan;
     const QString ssh = sshExecutable();
+    const bool tunnelsOnly = mode == PlanMode::Tunnels;
 
     if (!validTargets(connection, jumpChain, &plan.error))
         return plan;
+
+    // Validate the tunnels before any credential touches the disk. A remote
+    // command runs without them: it must not fight a session over the ports.
+    QStringList tunnelArgs;
+    for (const TunnelConfig &tunnel : connection.tunnels) {
+        if (mode != PlanMode::Command && tunnel.enabled
+            && !appendTunnel(tunnel, connection.displayName(), &tunnelArgs, &plan.error))
+            return plan;
+    }
+    if (tunnelsOnly && tunnelArgs.isEmpty()) {
+        plan.error = QStringLiteral("\"%1\" non ha tunnel attivi da avviare.")
+                         .arg(connection.displayName());
+        return plan;
+    }
 
     Connection effective = connection;
     QVector<Connection> hops = jumpChain;
@@ -363,31 +501,59 @@ SshPlan buildSshPlan(const Connection &connection, const QVector<Connection> &ju
     plan.program = ssh;
     plan.args = commonOptions();
     plan.args << authOptions(effective);
-
-    for (const TunnelConfig &tunnel : effective.tunnels) {
-        if (!tunnel.enabled)
-            continue;
-        if (tunnel.localPort == 0 || tunnel.remotePort == 0
-            || tunnel.remoteHost.trimmed().isEmpty()) {
-            plan.error = QStringLiteral("Tunnel incompleto: controlla porte e host remoto di \"%1\".")
-                             .arg(effective.displayName());
-            return plan;
-        }
-        plan.args << QStringLiteral("-L") << tunnelSpec(tunnel);
+    if (tunnelsOnly) {
+        // No remote command and no terminal; exit (and get restarted) when a
+        // forward cannot be set up instead of running half-broken.
+        plan.args << QStringLiteral("-N") << QStringLiteral("-T")
+                  << QStringLiteral("-o") << QStringLiteral("ExitOnForwardFailure=yes");
+    } else if (mode == PlanMode::Command) {
+        // No terminal: plain stdout/stderr and the remote exit status.
+        plan.args << QStringLiteral("-T");
     }
+    plan.args << tunnelArgs;
 
     if (!hops.isEmpty())
         plan.args << QStringLiteral("-o") << QStringLiteral("ProxyCommand=") + proxyOption(ssh, hops);
 
+    // Startup command: run it, then hand over to the user's login shell, so
+    // the session stays interactive even if the command fails or exits.
+    const QString startup = mode != PlanMode::Session
+                                ? QString()
+                                : snippets::expandBuiltins(effective.startupCommand.trimmed(),
+                                                           effective);
+    if (!startup.isEmpty())
+        plan.args << QStringLiteral("-t");
+
     plan.args << QStringLiteral("-p") << QString::number(effective.port);
     plan.args << effective.user + QLatin1Char('@') + effective.host;
+    if (!startup.isEmpty())
+        plan.args << startup + QStringLiteral("; exec \"${SHELL:-/bin/sh}\" -l");
 
     plan.askpassFile = askpassFile;
-    plan.environment << QStringLiteral("TERM=xterm-256color");
+    if (mode == PlanMode::Session)
+        plan.environment << QStringLiteral("TERM=xterm-256color");
     plan.environment << askpassEnvironment(askpassFile);
 
     plan.valid = true;
     return plan;
+}
+
+SshPlan buildSshPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                     const QString &runtimeDir)
+{
+    return buildPlan(connection, jumpChain, runtimeDir, PlanMode::Session);
+}
+
+SshPlan buildTunnelPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                        const QString &runtimeDir)
+{
+    return buildPlan(connection, jumpChain, runtimeDir, PlanMode::Tunnels);
+}
+
+SshPlan buildCommandPlan(const Connection &connection, const QVector<Connection> &jumpChain,
+                         const QString &runtimeDir)
+{
+    return buildPlan(connection, jumpChain, runtimeDir, PlanMode::Command);
 }
 
 SftpPlan buildSftpPlan(const Connection &connection, const QVector<Connection> &jumpChain,

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QByteArray>
+#include <QHash>
 #include <QJsonObject>
 #include <QString>
 #include <QStringList>
@@ -10,7 +11,8 @@ enum class AuthType { Password = 0, KeyFile = 1, Agent = 2 };
 
 // Per-connection terminal appearance. Defaults match the classic look.
 struct TerminalProfile {
-    QString colorScheme = QStringLiteral("DarkPastels");
+    // A qtermwidget scheme name, or "auto": follows the app's light/dark theme.
+    QString colorScheme = QStringLiteral("auto");
     QString fontFamily;  // empty: system fixed-width font
     int fontSize = 10;
     int cursorShape = 0;  // 0 block, 1 underline, 2 I-beam
@@ -20,7 +22,18 @@ struct TerminalProfile {
     bool blinkCursor = false;
 };
 
+// Port forwarding kinds. The fields keep their "local side / remote side"
+// meaning for every kind:
+//  - Local   (-L): listen on localAddress:localPort, connect to
+//                  remoteHost:remotePort from the server;
+//  - Remote  (-R): listen on the server at [remoteHost:]remotePort (remoteHost
+//                  is the bind address there), connect to
+//                  localAddress:localPort from this machine;
+//  - Dynamic (-D): SOCKS proxy on localAddress:localPort; remote fields unused.
+enum class TunnelType { Local, Remote, Dynamic };
+
 struct TunnelConfig {
+    TunnelType type = TunnelType::Local;
     QString localAddress = QStringLiteral("127.0.0.1");
     quint16 localPort = 8080;
     QString remoteHost = QStringLiteral("127.0.0.1");
@@ -45,9 +58,15 @@ struct Connection {
     QString jumpId;
     QString notes;
     bool favorite = false;
+    // Offered in the "go through" list of the other connections.
+    bool jumpHost = false;
     QStringList tags;
     QVector<TunnelConfig> tunnels;
     TerminalProfile terminal;
+    // Run on the server when the session opens, then an interactive shell.
+    QString startupCommand;
+    // Remote folders bookmarked in the file transfer window.
+    QStringList remoteBookmarks;
     bool local = false;  // transient local shell, never saved in the vault
 
     QString displayName() const { return name.isEmpty() ? host : name; }
@@ -59,6 +78,16 @@ struct Connection {
     }
 
     void clearSensitive();
+};
+
+// A reusable command. ${host}, ${user}, ${port} and ${name} are filled in
+// from the target session; any other ${variable} is asked when sending.
+struct Snippet {
+    QString id;
+    QString name;
+    QString command;
+    QString description;
+    bool runImmediately = true; // send Enter after the text
 };
 
 struct Node {
@@ -77,8 +106,14 @@ public:
     ConnectionStore();
 
     Node root;
+    QVector<Snippet> snippets;
+    // Commands typed per connection id, most recent first.
+    QHash<QString, QStringList> history;
+    static constexpr int kHistoryLimit = 200;
 
     void reset();
+    void addHistory(const QString &connectionId, const QString &command);
+    Snippet *findSnippet(const QString &id);
 
     // Plaintext JSON of the whole store; only ever handed to the encrypted vault.
     QJsonObject toJson() const;
@@ -99,6 +134,10 @@ public:
 
     QString folderPath(const QString &folderId) const;
     void collectConnections(QVector<const Connection *> &out) const;
+
+    // Sets the jump host flag on every connection another one goes through
+    // (archives written before the flag existed, ~/.ssh/config imports).
+    void markReferencedJumpHosts();
 
     static QString newId();
 };

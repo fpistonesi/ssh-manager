@@ -1,0 +1,125 @@
+From 070222e3d8e3a9c4acd2dc82d35cee615f2ad8ae Mon Sep 17 00:00:00 2001
+From: fpskianet <fpistonesi@webeasytech.com>
+Date: Thu, 19 Nov 2026 14:50:47 +0100
+Subject: [PATCH 3/3] Add exit code access and optional exit dialog
+
+QTermWidget::exitCode(), exitCrashed() and setExitDialogEnabled(): applications that report the end of a session themselves can read how the program ended and turn off the built-in 'exited unexpectedly' dialog.
+---
+ lib/Session.cpp     | 12 +++++++++++-
+ lib/Session.h       | 15 +++++++++++++++
+ lib/qtermwidget.cpp | 15 +++++++++++++++
+ lib/qtermwidget.h   |  9 +++++++++
+ 4 files changed, 50 insertions(+), 1 deletion(-)
+
+diff --git a/lib/Session.cpp b/lib/Session.cpp
+index 60d0515..d1e724f 100644
+--- a/lib/Session.cpp
++++ b/lib/Session.cpp
+@@ -729,7 +729,7 @@ void Session::done(int exitCode, QProcess::ExitStatus exitStatus)
+         message = _shellProcess->exitStatus() == QProcess::NormalExit ?
+                   tr("Session '%1' exited with code %2.").arg(_nameTitle).arg(exitCode) :
+                   tr("Session '%1' crashed.").arg(_nameTitle);
+-    if (!message.isEmpty())
++    if (!message.isEmpty() && _exitDialogEnabled)
+     {
+         message += tr("\nDo you want to save the scrollback buffer?");
+         QWidget *widget = nullptr;
+@@ -768,6 +768,16 @@ Emulation * Session::emulation() const
+     return _emulation;
+ }
+ 
++int Session::exitCode() const
++{
++    return _shellProcess ? _shellProcess->exitCode() : 0;
++}
++
++bool Session::exitCrashed() const
++{
++    return _shellProcess && _shellProcess->exitStatus() != QProcess::NormalExit;
++}
++
+ QString Session::keyBindings() const
+ {
+     return _emulation->keyBindings();
+diff --git a/lib/Session.h b/lib/Session.h
+index e09cf24..3a4384a 100644
+--- a/lib/Session.h
++++ b/lib/Session.h
+@@ -309,6 +309,20 @@ public:
+         _autoClose = b;
+     }
+ 
++    /**
++     * Whether an unexpected or failed exit of the terminal process shows the
++     * "save the scrollback?" dialog (default true). Applications that report
++     * the end of the session themselves turn it off.
++     */
++    void setExitDialogEnabled(bool enabled) {
++        _exitDialogEnabled = enabled;
++    }
++
++    /** Exit code of the terminal process, once it has finished. */
++    int exitCode() const;
++    /** True when the terminal process crashed or was killed. */
++    bool exitCrashed() const;
++
+     /**
+      * Sets whether flow control is enabled for this terminal
+      * session.
+@@ -549,6 +563,7 @@ private:
+     bool           _masterMode;
+     bool           _autoClose;
+     bool           _wantedClose;
++    bool           _exitDialogEnabled = true;
+     QTimer    *    _monitorTimer;
+     QElapsedTimer  _uptime;
+ 
+diff --git a/lib/qtermwidget.cpp b/lib/qtermwidget.cpp
+index 27892e5..6e08288 100644
+--- a/lib/qtermwidget.cpp
++++ b/lib/qtermwidget.cpp
+@@ -760,6 +760,21 @@ bool QTermWidget::isAlternateScreen()
+     return m_impl->m_session->emulation()->isAlternateScreen();
+ }
+ 
++int QTermWidget::exitCode() const
++{
++    return m_impl->m_session->exitCode();
++}
++
++bool QTermWidget::exitCrashed() const
++{
++    return m_impl->m_session->exitCrashed();
++}
++
++void QTermWidget::setExitDialogEnabled(bool enabled)
++{
++    m_impl->m_session->setExitDialogEnabled(enabled);
++}
++
+ void QTermWidget::setMonitorActivity(bool enabled)
+ {
+     m_impl->m_session->setMonitorActivity(enabled);
+diff --git a/lib/qtermwidget.h b/lib/qtermwidget.h
+index 7a57951..cd679ec 100644
+--- a/lib/qtermwidget.h
++++ b/lib/qtermwidget.h
+@@ -194,6 +194,15 @@ public:
+     /** True while a full-screen program uses the alternate screen. */
+     bool isAlternateScreen();
+ 
++    /**
++     * Exit code and crash flag of the program, valid after finished().
++     * setExitDialogEnabled(false) suppresses the built-in "exited
++     * unexpectedly" dialog, for applications that report it themselves.
++     */
++    int exitCode() const;
++    bool exitCrashed() const;
++    void setExitDialogEnabled(bool enabled);
++
+     void setMonitorActivity(bool) override;
+     void setMonitorSilence(bool) override;
+     void setSilenceTimeout(int seconds) override;
+-- 
+2.43.0
+

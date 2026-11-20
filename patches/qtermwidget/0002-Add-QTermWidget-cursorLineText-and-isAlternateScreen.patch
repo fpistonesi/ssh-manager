@@ -1,0 +1,96 @@
+From 3da1f59648104a40446cc403044691bb4e7b7569 Mon Sep 17 00:00:00 2001
+From: fpskianet <fpistonesi@webeasytech.com>
+Date: Thu, 19 Nov 2026 14:00:04 +0100
+Subject: [PATCH 2/3] Add QTermWidget::cursorLineText() and isAlternateScreen()
+
+Read the line the cursor is on without touching the selection, and tell whether a full-screen program uses the alternate screen. Used by SSH Manager to record the commands typed at a shell prompt.
+---
+ lib/Emulation.h     |  3 +++
+ lib/qtermwidget.cpp | 27 +++++++++++++++++++++++++++
+ lib/qtermwidget.h   |  9 +++++++++
+ 3 files changed, 39 insertions(+)
+
+diff --git a/lib/Emulation.h b/lib/Emulation.h
+index fecbfcc..ebe6247 100644
+--- a/lib/Emulation.h
++++ b/lib/Emulation.h
+@@ -221,6 +221,9 @@ public:
+    */
+   bool programUsesMouse() const;
+ 
++  /** True while a full-screen program (vim, less, top...) uses the alternate screen. */
++  bool isAlternateScreen() const { return _currentScreen == _screen[1]; }
++
+   bool programBracketedPasteMode() const;
+ 
+ public slots:
+diff --git a/lib/qtermwidget.cpp b/lib/qtermwidget.cpp
+index bff002b..27892e5 100644
+--- a/lib/qtermwidget.cpp
++++ b/lib/qtermwidget.cpp
+@@ -32,8 +32,11 @@
+ #include "KeyboardTranslator.h"
+ #include "ColorScheme.h"
+ #include "SearchBar.h"
++#include "TerminalCharacterDecoder.h"
+ #include "qtermwidget.h"
+ 
++#include <QTextStream>
++
+ #ifdef Q_OS_MACOS
+ // Qt does not support fontconfig on macOS, so we need to use a "real" font name.
+ #define DEFAULT_FONT_FAMILY                   "Menlo"
+@@ -733,6 +736,30 @@ QString QTermWidget::selectedText(bool preserveLineBreaks)
+     return m_impl->m_terminalDisplay->screenWindow()->screen()->selectedText(preserveLineBreaks);
+ }
+ 
++QString QTermWidget::cursorLineText(int *cursorColumn)
++{
++    Screen *screen = m_impl->m_terminalDisplay->screenWindow()->screen();
++    // writeLinesToStream() counts history lines first, then the screen.
++    const int line = screen->getHistLines() + screen->getCursorY();
++    QString text;
++    QTextStream stream(&text);
++    PlainTextDecoder decoder;
++    decoder.begin(&stream);
++    screen->writeLinesToStream(&decoder, line, line);
++    decoder.end();
++    stream.flush();
++    if (cursorColumn)
++        *cursorColumn = screen->getCursorX();
++    while (text.endsWith(QLatin1Char('\n')) || text.endsWith(QLatin1Char('\r')))
++        text.chop(1);
++    return text;
++}
++
++bool QTermWidget::isAlternateScreen()
++{
++    return m_impl->m_session->emulation()->isAlternateScreen();
++}
++
+ void QTermWidget::setMonitorActivity(bool enabled)
+ {
+     m_impl->m_session->setMonitorActivity(enabled);
+diff --git a/lib/qtermwidget.h b/lib/qtermwidget.h
+index f9b9979..7a57951 100644
+--- a/lib/qtermwidget.h
++++ b/lib/qtermwidget.h
+@@ -185,6 +185,15 @@ public:
+      */
+     QString selectedText(bool preserveLineBreaks = true) override;
+ 
++    /**
++     * Text of the screen line the cursor is on, without touching the
++     * selection; @p cursorColumn receives the cursor column.
++     */
++    QString cursorLineText(int *cursorColumn = nullptr);
++
++    /** True while a full-screen program uses the alternate screen. */
++    bool isAlternateScreen();
++
+     void setMonitorActivity(bool) override;
+     void setMonitorSilence(bool) override;
+     void setSilenceTimeout(int seconds) override;
+-- 
+2.43.0
+

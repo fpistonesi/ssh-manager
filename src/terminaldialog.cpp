@@ -27,6 +27,7 @@ TerminalDialog::TerminalDialog(const TerminalProfile &profile, QWidget *parent)
     auto *appearanceForm = new QFormLayout(appearance);
 
     colorScheme_ = new QComboBox(appearance);
+    colorScheme_->addItem(tr("Automatico (segue il tema dell'app)"), QStringLiteral("auto"));
     for (const QString &scheme : QTermWidget::availableColorSchemes())
         colorScheme_->addItem(scheme, scheme);
 
